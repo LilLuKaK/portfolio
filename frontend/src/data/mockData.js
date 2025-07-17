@@ -73,7 +73,7 @@ export const projects = [
     description: "Complete digital marketing projects for major rural banks including landing pages, microsites, and interactive tools.",
     technologies: ["React", "TypeScript", "Tailwind CSS", "REST API"],
     category: "Web Application",
-    image: "/api/placeholder/400/300",
+    image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
     featured: true,
     links: {
       live: "#",
@@ -86,7 +86,7 @@ export const projects = [
     description: "Reactive and optimized UI for content automation and analysis tools for digital media and brands.",
     technologies: ["React", "TypeScript", "Chart.js", "REST API"],
     category: "Dashboard",
-    image: "/api/placeholder/400/300",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwxfHx8ZGFzaGJvYXJkfGVufDB8fHx8MTc1Mjc0NzI4Mnww&ixlib=rb-4.1.0&q=85",
     featured: true,
     links: {
       live: "#",
@@ -99,7 +99,7 @@ export const projects = [
     description: "Full-stack e-commerce solution with modern UI/UX and payment integration.",
     technologies: ["Vue.js", "Node.js", "MongoDB", "Stripe"],
     category: "Web Application",
-    image: "/api/placeholder/400/300",
+    image: "https://images.unsplash.com/photo-1654618977232-a6c6dea9d1e8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
     featured: false,
     links: {
       live: "#",
@@ -112,7 +112,7 @@ export const projects = [
     description: "Modern chat application with real-time messaging and file sharing capabilities.",
     technologies: ["React", "Socket.io", "Node.js", "PostgreSQL"],
     category: "Web Application",
-    image: "/api/placeholder/400/300",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxjb2Rpbmd8ZW58MHx8fHwxNzUyNjM3NDQ1fDA&ixlib=rb-4.1.0&q=85",
     featured: false,
     links: {
       live: "#",
@@ -125,7 +125,7 @@ export const projects = [
     description: "Agile project management tool with drag-and-drop functionality and team collaboration features.",
     technologies: ["Angular", "TypeScript", "Java", "MySQL"],
     category: "Web Application",
-    image: "/api/placeholder/400/300",
+    image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxjb2Rpbmd8ZW58MHx8fHwxNzUyNjM3NDQ1fDA&ixlib=rb-4.1.0&q=85",
     featured: false,
     links: {
       live: "#",
