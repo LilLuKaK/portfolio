@@ -141,7 +141,7 @@ export const musicPlaylist = [
     artist: "Kanye West",
     album: "My Beautiful Dark Twisted Fantasy",
     src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-    cover: "/api/placeholder/200/200"
+    cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhbGJ1bSUyMGNvdmVyfGVufDB8fHx8MTc1Mjc0NzI2OHww&ixlib=rb-4.1.0&q=85&w=200&h=200"
   },
   {
     id: 2,
@@ -149,7 +149,7 @@ export const musicPlaylist = [
     artist: "Kanye West",
     album: "The College Dropout",
     src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-    cover: "/api/placeholder/200/200"
+    cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhbGJ1bSUyMGNvdmVyfGVufDB8fHx8MTc1Mjc0NzI2OHww&ixlib=rb-4.1.0&q=85&w=200&h=200"
   },
   {
     id: 3,
@@ -157,6 +157,6 @@ export const musicPlaylist = [
     artist: "Kanye West",
     album: "Donda 2",
     src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-    cover: "/api/placeholder/200/200"
+    cover: "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhbGJ1bSUyMGNvdmVyfGVufDB8fHx8MTc1Mjc0NzI2OHww&ixlib=rb-4.1.0&q=85&w=200&h=200"
   }
 ];
