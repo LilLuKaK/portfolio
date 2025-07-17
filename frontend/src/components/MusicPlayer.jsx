@@ -62,19 +62,11 @@ const MusicPlayer = () => {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  const handleMouseEnter = () => {
-    setIsExpanded(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsExpanded(false);
-  };
-
   return (
     <div 
       className="fixed bottom-6 right-6 z-50"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => setIsExpanded(true)}
+      onMouseLeave={() => setIsExpanded(false)}
     >
       <audio
         ref={audioRef}
@@ -90,20 +82,37 @@ const MusicPlayer = () => {
         transition={{ duration: 0.5, delay: 0.5 }}
         className="relative"
       >
-        <AnimatePresence mode="wait">
+        {/* Expanded Player */}
+        <motion.div
+          initial={false}
+          animate={isExpanded ? {
+            width: 320,
+            height: 'auto',
+            borderRadius: '1rem',
+            opacity: 1,
+            scale: 1
+          } : {
+            width: 64,
+            height: 64,
+            borderRadius: '50%',
+            opacity: 1,
+            scale: 1
+          }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 400, 
+            damping: 25,
+            duration: 0.3
+          }}
+          className="bg-white/10 backdrop-blur-md border border-white/20 shadow-xl overflow-hidden cursor-pointer"
+        >
           {isExpanded ? (
+            // Full expanded player
             <motion.div
-              key="expanded"
-              initial={{ width: 64, height: 64, borderRadius: '50%' }}
-              animate={{ width: 320, height: 'auto', borderRadius: '1rem' }}
-              exit={{ width: 64, height: 64, borderRadius: '50%' }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 400, 
-                damping: 25,
-                duration: 0.3
-              }}
-              className="bg-white/10 backdrop-blur-md border border-white/20 shadow-xl p-4 overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="p-4"
             >
               <div className="flex items-center space-x-4 mb-4">
                 <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
@@ -188,97 +197,84 @@ const MusicPlayer = () => {
               </div>
             </motion.div>
           ) : (
-            <motion.div
-              key="minimized"
-              initial={{ width: 320, height: 'auto', borderRadius: '1rem' }}
-              animate={{ width: 64, height: 64, borderRadius: '50%' }}
-              exit={{ width: 320, height: 'auto', borderRadius: '1rem' }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 400, 
-                damping: 25,
-                duration: 0.3
-              }}
-              className="bg-white/10 backdrop-blur-md border border-white/20 shadow-xl overflow-hidden cursor-pointer relative group"
-            >
-              <div className="w-full h-full relative">
-                <img 
-                  src={track.cover} 
-                  alt={track.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                
-                {/* Overlay with play/pause button */}
-                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button
-                    onClick={togglePlay}
-                    className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-                  >
-                    {isPlaying ? (
-                      <Pause className="w-4 h-4 text-white" />
-                    ) : (
-                      <Play className="w-4 h-4 text-white ml-0.5" />
-                    )}
-                  </button>
-                </div>
-                
-                {/* Playing indicator */}
-                {isPlaying && (
-                  <motion.div
-                    className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                )}
-                
-                {/* Sound waves animation when playing */}
-                {isPlaying && (
-                  <div className="absolute bottom-2 left-2 flex items-end space-x-1">
-                    {[...Array(3)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="w-1 bg-white/80 rounded-full"
-                        animate={{
-                          height: [4, 12, 4],
-                        }}
-                        transition={{
-                          duration: 0.8,
-                          repeat: Infinity,
-                          delay: i * 0.1,
-                        }}
-                      />
-                    ))}
-                  </div>
-                )}
-                
-                {/* Progress ring */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <svg className="w-full h-full transform -rotate-90">
-                    <circle
-                      cx="50%"
-                      cy="50%"
-                      r="28"
-                      fill="none"
-                      stroke="rgba(255,255,255,0.2)"
-                      strokeWidth="2"
-                    />
-                    <circle
-                      cx="50%"
-                      cy="50%"
-                      r="28"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeDasharray={`${2 * Math.PI * 28}`}
-                      strokeDashoffset={`${2 * Math.PI * 28 * (1 - (currentTime / duration || 0))}`}
-                      className="transition-all duration-300"
-                    />
-                  </svg>
-                </div>
+            // Minimized album cover
+            <div className="w-full h-full relative group">
+              <img 
+                src={track.cover} 
+                alt={track.title}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              />
+              
+              {/* Quick play button overlay */}
+              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button
+                  onClick={togglePlay}
+                  className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+                >
+                  {isPlaying ? (
+                    <Pause className="w-4 h-4 text-white" />
+                  ) : (
+                    <Play className="w-4 h-4 text-white ml-0.5" />
+                  )}
+                </button>
               </div>
-            </motion.div>
+              
+              {/* Playing indicator */}
+              {isPlaying && (
+                <motion.div
+                  className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                />
+              )}
+              
+              {/* Sound waves animation when playing */}
+              {isPlaying && (
+                <div className="absolute bottom-2 left-2 flex items-end space-x-1">
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="w-1 bg-white/80 rounded-full"
+                      animate={{
+                        height: [4, 12, 4],
+                      }}
+                      transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                        delay: i * 0.1,
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
+              
+              {/* Progress ring */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <svg className="w-full h-full transform -rotate-90">
+                  <circle
+                    cx="50%"
+                    cy="50%"
+                    r="28"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.2)"
+                    strokeWidth="2"
+                  />
+                  <circle
+                    cx="50%"
+                    cy="50%"
+                    r="28"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeDasharray={`${2 * Math.PI * 28}`}
+                    strokeDashoffset={`${2 * Math.PI * 28 * (1 - (currentTime / duration || 0))}`}
+                    className="transition-all duration-300"
+                  />
+                </svg>
+              </div>
+            </div>
           )}
-        </AnimatePresence>
+        </motion.div>
       </motion.div>
     </div>
   );
