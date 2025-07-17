@@ -42,6 +42,7 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-black overflow-x-hidden">
+      <LiquidGlassNavigation />
       <Hero />
       <About />
       <Skills />
