@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Home, User, Code, Briefcase, Mail, FolderOpen } from 'lucide-react';
+import './LiquidGlassNavigation.css';
 
 const LiquidGlassNavigation = () => {
   const [activeSection, setActiveSection] = useState('hero');
@@ -12,6 +13,29 @@ const LiquidGlassNavigation = () => {
     { id: 'experience', icon: Briefcase, label: 'Experience', href: '#experience' },
     { id: 'contact', icon: Mail, label: 'Contact', href: '#contact' }
   ];
+
+  // Track active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navigationItems.map(item => ({
+        id: item.id,
+        element: document.querySelector(item.href)
+      }));
+
+      const scrollPosition = window.scrollY + 200; // Offset for better detection
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section.element && section.element.offsetTop <= scrollPosition) {
+          setActiveSection(section.id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNavClick = (item) => {
     setActiveSection(item.id);
@@ -42,7 +66,7 @@ const LiquidGlassNavigation = () => {
         </defs>
       </svg>
 
-      <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
+      <nav className="liquid-glass-nav">
         <div className="liquid-glass-wrapper dock">
           <div className="liquid-glass-effect"></div>
           <div className="liquid-glass-tint"></div>
@@ -66,106 +90,6 @@ const LiquidGlassNavigation = () => {
           </div>
         </div>
       </nav>
-
-      <style jsx>{`
-        /* LIQUID GLASS STYLES */
-        .liquid-glass-wrapper {
-          position: relative;
-          display: flex;
-          font-weight: 600;
-          overflow: hidden;
-          color: black;
-          cursor: pointer;
-          box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
-        }
-
-        .liquid-glass-effect {
-          position: absolute;
-          z-index: 0;
-          inset: 0;
-          backdrop-filter: blur(3px);
-          filter: url(#glass-distortion);
-          overflow: hidden;
-          isolation: isolate;
-        }
-
-        .liquid-glass-tint {
-          z-index: 1;
-          position: absolute;
-          inset: 0;
-          background: rgba(255, 255, 255, 0.25);
-        }
-
-        .liquid-glass-shine {
-          position: absolute;
-          inset: 0;
-          z-index: 2;
-          overflow: hidden;
-          box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
-            inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
-        }
-
-        .liquid-glass-text {
-          z-index: 3;
-          color: black;
-        }
-
-        .dock-container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          border-radius: 2rem;
-          padding: 0.6rem;
-        }
-
-        .dock-container,
-        .dock-container > button {
-          border-radius: 2rem;
-        }
-
-        .liquid-glass-wrapper:hover .dock-container {
-          padding: 0.8rem;
-          border-radius: 2.5rem;
-        }
-
-        .liquid-glass-wrapper:hover .dock-container > button {
-          border-radius: 2.5rem;
-        }
-
-        .nav-item {
-          width: 50px;
-          height: 50px;
-          padding: 0;
-          border: none;
-          background: transparent;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
-          cursor: pointer;
-          color: rgba(255, 255, 255, 0.8);
-          border-radius: 1rem;
-        }
-
-        .nav-item:hover {
-          transform: scale(0.95);
-          transform-origin: center center;
-          background: rgba(255, 255, 255, 0.2);
-          color: rgba(255, 255, 255, 1);
-        }
-
-        .nav-item.active {
-          background: rgba(255, 255, 255, 0.3);
-          color: rgba(255, 255, 255, 1);
-          box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-item.active:hover {
-          background: rgba(255, 255, 255, 0.4);
-        }
-      `}</style>
     </>
   );
 };
