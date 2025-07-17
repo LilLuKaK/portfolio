@@ -25,15 +25,7 @@ export default function FluidGlass({
   const rawOverrides =
     mode === 'bar' ? barProps : mode === 'cube' ? cubeProps : lensProps
 
-  const {
-    navItems = [
-      { label: 'Home', link: '#hero' },
-      { label: 'About', link: '#about' },
-      { label: 'Projects', link: '#projects' },
-      { label: 'Contact', link: '#contact' },
-    ],
-    ...modeProps
-  } = rawOverrides
+  const { ...modeProps } = rawOverrides
 
   return (
     <Canvas
@@ -41,7 +33,6 @@ export default function FluidGlass({
       gl={{ alpha: true }}
     >
       <ScrollControls damping={0.2} pages={3} distance={0.4}>
-        {mode === 'bar' && <NavItems items={navItems} />}
         <Wrapper modeProps={modeProps}>
           <Scroll>
             <Typography />
