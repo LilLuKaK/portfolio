@@ -8,11 +8,13 @@ const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [isMuted, setIsMuted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
   const hideTimeoutRef = useRef(null);
+  const initialShowTimeoutRef = useRef(null);
 
   const track = musicPlaylist[currentTrack];
 
@@ -41,12 +43,19 @@ const MusicPlayer = () => {
   }, [volume, isMuted]);
 
   useEffect(() => {
-    // Auto-minimize after 5 seconds
-    const timer = setTimeout(() => {
-      setIsMinimized(true);
-    }, 5000);
+    // Show player initially for 3 seconds, then hide
+    setIsVisible(true);
+    setIsMinimized(false);
+    
+    initialShowTimeoutRef.current = setTimeout(() => {
+      setIsVisible(false);
+    }, 3000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      if (initialShowTimeoutRef.current) {
+        clearTimeout(initialShowTimeoutRef.current);
+      }
+    };
   }, []);
 
   const togglePlay = () => {
@@ -73,23 +82,30 @@ const MusicPlayer = () => {
   };
 
   const handleMouseEnter = () => {
-    clearTimeout(hideTimeoutRef.current);
+    // Clear any pending hide timeout
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+    }
+    if (initialShowTimeoutRef.current) {
+      clearTimeout(initialShowTimeoutRef.current);
+    }
+    
+    setIsVisible(true);
     setIsMinimized(false);
   };
 
   const handleMouseLeave = () => {
+    // Hide after a short delay
     hideTimeoutRef.current = setTimeout(() => {
-      setIsMinimized(true);
-    }, 3000);
+      setIsVisible(false);
+    }, 500);
   };
 
   return (
-    <motion.div
+    <div 
       className="fixed bottom-6 right-6 z-50"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      whileHover={{ scale: 1.05 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       <audio
         ref={audioRef}
@@ -99,130 +115,148 @@ const MusicPlayer = () => {
         loop={currentTrack === musicPlaylist.length - 1}
       />
       
-      <AnimatePresence mode="wait">
-        {isMinimized ? (
+      <AnimatePresence>
+        {isVisible && (
           <motion.div
-            key="minimized"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 300, 
+              damping: 20,
+              duration: 0.3
+            }}
             className="relative"
           >
-            <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl overflow-hidden cursor-pointer">
-              <img 
-                src={track.cover} 
-                alt={track.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                {isPlaying ? (
-                  <Pause className="w-6 h-6 text-white" />
-                ) : (
-                  <Play className="w-6 h-6 text-white ml-1" />
-                )}
-              </div>
-            </div>
-            {isPlaying && (
+            {isMinimized ? (
               <motion.div
-                className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              />
-            )}
-          </motion.div>
-        ) : (
-          <motion.div
-            key="expanded"
-            initial={{ scale: 0.8, opacity: 0, width: 64 }}
-            animate={{ scale: 1, opacity: 1, width: 320 }}
-            exit={{ scale: 0.8, opacity: 0, width: 64 }}
-            className="bg-white/10 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-4 min-w-80"
-          >
-            <div className="flex items-center space-x-4 mb-4">
-              <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
-                <img 
-                  src={track.cover} 
-                  alt={track.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="text-white font-semibold text-sm truncate">{track.title}</h3>
-                <p className="text-white/70 text-xs truncate">{track.artist}</p>
-                <p className="text-white/50 text-xs truncate">{track.album}</p>
-              </div>
-            </div>
-
-            {/* Progress bar */}
-            <div className="mb-4">
-              <div className="w-full bg-white/20 rounded-full h-1">
-                <div 
-                  className="bg-white h-1 rounded-full transition-all duration-300"
-                  style={{ width: `${(currentTime / duration) * 100}%` }}
-                />
-              </div>
-              <div className="flex justify-between text-xs text-white/70 mt-1">
-                <span>{formatTime(currentTime)}</span>
-                <span>{formatTime(duration)}</span>
-              </div>
-            </div>
-
-            {/* Controls */}
-            <div className="flex items-center justify-between">
-              <button
-                onClick={prevTrack}
-                className="p-2 rounded-full hover:bg-white/20 transition-colors"
+                key="minimized"
+                initial={{ width: 320, height: 'auto' }}
+                animate={{ width: 64, height: 64 }}
+                exit={{ width: 320, height: 'auto' }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative cursor-pointer"
+                onClick={() => setIsMinimized(false)}
               >
-                <SkipBack className="w-4 h-4 text-white" />
-              </button>
-              
-              <button
-                onClick={togglePlay}
-                className="p-3 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
-              >
-                {isPlaying ? (
-                  <Pause className="w-5 h-5 text-white" />
-                ) : (
-                  <Play className="w-5 h-5 text-white ml-0.5" />
+                <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl overflow-hidden">
+                  <img 
+                    src={track.cover} 
+                    alt={track.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                    {isPlaying ? (
+                      <Pause className="w-6 h-6 text-white" />
+                    ) : (
+                      <Play className="w-6 h-6 text-white ml-1" />
+                    )}
+                  </div>
+                </div>
+                {isPlaying && (
+                  <motion.div
+                    className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                  />
                 )}
-              </button>
-              
-              <button
-                onClick={nextTrack}
-                className="p-2 rounded-full hover:bg-white/20 transition-colors"
+              </motion.div>
+            ) : (
+              <motion.div
+                key="expanded"
+                initial={{ width: 64, height: 64 }}
+                animate={{ width: 320, height: 'auto' }}
+                exit={{ width: 64, height: 64 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="bg-white/10 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-4 min-w-80"
               >
-                <SkipForward className="w-4 h-4 text-white" />
-              </button>
-              
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => setIsMuted(!isMuted)}
-                  className="p-1 rounded-full hover:bg-white/20 transition-colors"
-                >
-                  {isMuted ? (
-                    <VolumeX className="w-4 h-4 text-white" />
-                  ) : (
-                    <Volume2 className="w-4 h-4 text-white" />
-                  )}
-                </button>
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.1"
-                  value={volume}
-                  onChange={(e) => setVolume(parseFloat(e.target.value))}
-                  className="w-16 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer"
-                  style={{
-                    background: `linear-gradient(to right, white 0%, white ${volume * 100}%, rgba(255,255,255,0.2) ${volume * 100}%, rgba(255,255,255,0.2) 100%)`
-                  }}
-                />
-              </div>
-            </div>
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
+                    <img 
+                      src={track.cover} 
+                      alt={track.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-white font-semibold text-sm truncate">{track.title}</h3>
+                    <p className="text-white/70 text-xs truncate">{track.artist}</p>
+                    <p className="text-white/50 text-xs truncate">{track.album}</p>
+                  </div>
+                </div>
+
+                {/* Progress bar */}
+                <div className="mb-4">
+                  <div className="w-full bg-white/20 rounded-full h-1">
+                    <div 
+                      className="bg-white h-1 rounded-full transition-all duration-300"
+                      style={{ width: `${(currentTime / duration) * 100}%` }}
+                    />
+                  </div>
+                  <div className="flex justify-between text-xs text-white/70 mt-1">
+                    <span>{formatTime(currentTime)}</span>
+                    <span>{formatTime(duration)}</span>
+                  </div>
+                </div>
+
+                {/* Controls */}
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={prevTrack}
+                    className="p-2 rounded-full hover:bg-white/20 transition-colors"
+                  >
+                    <SkipBack className="w-4 h-4 text-white" />
+                  </button>
+                  
+                  <button
+                    onClick={togglePlay}
+                    className="p-3 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+                  >
+                    {isPlaying ? (
+                      <Pause className="w-5 h-5 text-white" />
+                    ) : (
+                      <Play className="w-5 h-5 text-white ml-0.5" />
+                    )}
+                  </button>
+                  
+                  <button
+                    onClick={nextTrack}
+                    className="p-2 rounded-full hover:bg-white/20 transition-colors"
+                  >
+                    <SkipForward className="w-4 h-4 text-white" />
+                  </button>
+                  
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => setIsMuted(!isMuted)}
+                      className="p-1 rounded-full hover:bg-white/20 transition-colors"
+                    >
+                      {isMuted ? (
+                        <VolumeX className="w-4 h-4 text-white" />
+                      ) : (
+                        <Volume2 className="w-4 h-4 text-white" />
+                      )}
+                    </button>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.1"
+                      value={volume}
+                      onChange={(e) => setVolume(parseFloat(e.target.value))}
+                      className="w-16 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer"
+                      style={{
+                        background: `linear-gradient(to right, white 0%, white ${volume * 100}%, rgba(255,255,255,0.2) ${volume * 100}%, rgba(255,255,255,0.2) 100%)`
+                      }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 };
 
