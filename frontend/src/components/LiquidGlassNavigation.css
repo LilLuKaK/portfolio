@@ -1,0 +1,145 @@
+/* Liquid Glass Navigation Styles */
+.liquid-glass-nav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+/* LIQUID GLASS STYLES */
+.liquid-glass-wrapper {
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  overflow: hidden;
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+}
+
+.liquid-glass-effect {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  filter: url(#glass-distortion);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.liquid-glass-tint {
+  z-index: 1;
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.liquid-glass-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.liquid-glass-text {
+  z-index: 3;
+  color: black;
+}
+
+.dock-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 2rem;
+  padding: 0.6rem;
+}
+
+.dock-container,
+.dock-container > button {
+  border-radius: 2rem;
+}
+
+.liquid-glass-wrapper:hover .dock-container {
+  padding: 0.8rem;
+  border-radius: 2.5rem;
+}
+
+.liquid-glass-wrapper:hover .dock-container > button {
+  border-radius: 2.5rem;
+}
+
+.nav-item {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
+}
+
+.nav-item:hover {
+  transform: scale(0.95);
+  transform-origin: center center;
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 1);
+}
+
+.nav-item.active {
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 1);
+  box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item.active:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .liquid-glass-nav {
+    top: 16px;
+  }
+  
+  .dock-container {
+    padding: 0.4rem;
+    gap: 4px;
+  }
+  
+  .nav-item {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .nav-item svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dock-container {
+    padding: 0.3rem;
+    gap: 2px;
+  }
+  
+  .nav-item {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .nav-item svg {
+    width: 18px;
+    height: 18px;
+  }
+}
