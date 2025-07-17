@@ -9,6 +9,7 @@ import Experience from "./components/sections/Experience";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 import MusicPlayer from "./components/MusicPlayer";
+import LiquidGlassNavigation from "./components/LiquidGlassNavigation";
 
 const Portfolio = () => {
   useEffect(() => {
