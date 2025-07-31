@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Download, Github, Linkedin } from 'lucide-react';
 import GlassCard from '../GlassCard';
@@ -6,6 +6,45 @@ import GlassSurface from './../GlassSurface'
 import { personalInfo } from '../../data/mockData';
 
 const Contact = () => {
+  const [rotomStatus, setRotomStatus] = useState(null); // Null hasta tener el estado
+  const [imageTimestamp, setImageTimestamp] = useState(0); // Para forzar recarga
+  
+  const getRotomImage = (status) => {
+    const baseImages = {
+      online: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Happy.png',
+      ausente: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Normal.png',
+      offline: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Sigh.png',
+    };
+    
+    // Añadir timestamp para evitar caché
+    return `${baseImages[status || 'offline']}?t=${imageTimestamp}`;
+  };
+
+  useEffect(() => {
+    const fetchContactStatus = async () => {
+      try {
+        const res = await fetch(
+          'https://docs.google.com/spreadsheets/d/1xzjmg6DQ7TbiSTYmS-8tA7iUeg8J5RU4-Ixl6JgOEEs/gviz/tq?tqx=out:json'
+        );
+        const text = await res.text();
+        
+        // Parsear respuesta
+        const json = JSON.parse(text.substr(47).slice(0, -2));
+        const estado = json.table.rows[0]?.c?.[0]?.v?.toLowerCase() || 'offline';
+        
+        console.log('Estado obtenido:', estado);
+        setRotomStatus(estado);
+        setImageTimestamp(Date.now()); // Forzar recarga de imagen
+      } catch (error) {
+        console.error('Error fetching contact status:', error);
+        setRotomStatus('offline');
+        setImageTimestamp(Date.now());
+      }
+    };
+
+    fetchContactStatus();
+  }, []);
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -225,9 +264,40 @@ const Contact = () => {
               className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
             >
               <div className="flex flex-col w-full p-6">
-                <h3 className="text-2xl font-bold text-white mb-6">
-                  Want to contact me?
-                </h3>
+                {/* Mostrar estado solo cuando se haya obtenido */}
+                {rotomStatus !== null ? (
+                  <div className="flex items-center space-x-4 mb-6">
+                    <img
+                      src={getRotomImage(rotomStatus)}
+                      alt={`Rotom ${rotomStatus}`}
+                      className="w-16 h-16 rounded-md border-2 border-white object-contain"
+                      style={{ imageRendering: 'pixelated' }}
+                      key={`rotom-${imageTimestamp}`} // Key única para forzar recarga
+                    />
+                    <div>
+                      <h3 className="text-2xl font-bold text-white">
+                        Want to contact me?
+                      </h3>
+                      <p className="text-sm text-white/70 capitalize">
+                        Status: {rotomStatus}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-4 mb-6">
+                    <div className="w-16 h-16 rounded-md bg-gray-700 animate-pulse flex items-center justify-center">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white">
+                        Checking availability...
+                      </h3>
+                      <p className="text-sm text-white/70">
+                        Loading status...
+                      </p>
+                    </div>
+                  </div>
+                )}
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">

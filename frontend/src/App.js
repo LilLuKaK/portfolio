@@ -10,6 +10,7 @@ import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
 import LiquidGlassNavigation from "./components/LiquidGlassNavigation";
 import DynamicIslandMusicPlayer1 from './components/DynamicIslandMusicPlayer1';
+import FloatingGifDialog from "./components/FloatingGifDialog";
 import Silk from "./components/Silk";
 import FluidGlass from "./components/FluidGlass";
 
@@ -150,13 +151,12 @@ const Portfolio = () => {
         <Experience />
         <Contact />
       </div>
-
       {/* Footer sin fondo Silk */}
       <div className="relative z-10">
         <Footer />
       </div>
-
       <DynamicIslandMusicPlayer1 songs={songs} />
+      <FloatingGifDialog />
     </div>
   );
 };
