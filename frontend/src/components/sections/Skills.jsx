@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import GlassCard from '../GlassCard';
+import GlassSurface from './../GlassSurface'
 import { skills } from '../../data/mockData';
 
 const Skills = () => {
@@ -8,42 +9,42 @@ const Skills = () => {
       title: 'Frontend',
       skills: skills.frontend,
       color: 'from-blue-400 to-purple-600',
-      icon: '🎨'
+      icon: 'https://img.icons8.com/liquid-glass/48/web-design.png' // Paleta de colores
     },
     {
       title: 'Backend',
       skills: skills.backend,
       color: 'from-green-400 to-blue-600',
-      icon: '⚙️'
+      icon: 'https://img.icons8.com/liquid-glass/48/program.png' // Engranaje
     },
     {
       title: 'Databases',
       skills: skills.databases,
       color: 'from-yellow-400 to-orange-600',
-      icon: '🗄️'
+      icon: 'https://img.icons8.com/liquid-glass/48/cloud-database.png' // Base de datos
     },
     {
       title: 'Methodologies',
       skills: skills.methodologies,
       color: 'from-pink-400 to-red-600',
-      icon: '📋'
+      icon: 'https://img.icons8.com/liquid-glass/48/test.png' // Lista de tareas
     },
     {
       title: 'Operating Systems',
       skills: skills.os,
       color: 'from-indigo-400 to-purple-600',
-      icon: '💻'
+      icon: 'https://img.icons8.com/liquid-glass/48/happy-mac.png' // Monitor
     },
     {
       title: 'Tools',
       skills: skills.tools,
       color: 'from-teal-400 to-cyan-600',
-      icon: '🔧'
+      icon: 'https://img.icons8.com/liquid-glass/48/full-tool-storage-box-.png' // Herramientas
     }
   ];
 
   return (
-    <section id="skills" className="min-h-screen py-20 px-6 bg-gradient-to-br from-black via-gray-900 to-black">
+    <section id="skills" className="min-h-screen py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -67,29 +68,53 @@ const Skills = () => {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <GlassCard className="h-full">
-                <div className="text-center mb-6">
-                  <div className="text-4xl mb-3">{category.icon}</div>
-                  <h3 className="text-xl font-bold text-white mb-2">{category.title}</h3>
-                  <div className={`w-16 h-1 bg-gradient-to-r ${category.color} mx-auto rounded-full`}></div>
+              <GlassSurface
+                width="auto"
+                height="100%"
+                borderRadius={17}
+                brightness={50}
+                blur={10}
+                opacity={0.93}
+                redOffset={0}
+                greenOffset={10}
+                blueOffset={20}
+                displace={0.5}
+                distortionScale={-100}
+                mixBlendMode="screen"
+                className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
+              >
+                <div className="flex flex-col w-full h-full justify-start">  
+                  {/* Sección superior (icono + título + línea) */}
+                  <div className="text-center mb-6 w-full">  
+                    <div className="flex justify-center mb-3">
+                      <img 
+                        src={category.icon} 
+                        alt={category.title} 
+                        className="h-12 w-12 object-contain" 
+                      />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">{category.title}</h3>
+                    <div className={`w-16 h-1 bg-gradient-to-r ${category.color} mx-auto rounded-full`}></div>
+                  </div>
+
+                  {/* Sección inferior (lista de habilidades) */}
+                  <div className="space-y-3 w-full">
+                    {category.skills.map((skill, skillIndex) => (
+                      <motion.div
+                        key={skill}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: (index * 0.1) + (skillIndex * 0.05) }}
+                        viewport={{ once: true }}
+                        className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300"
+                      >
+                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`}></div>
+                        <span className="text-white/90 text-sm">{skill}</span>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-                
-                <div className="space-y-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.div
-                      key={skill}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: (index * 0.1) + (skillIndex * 0.05) }}
-                      viewport={{ once: true }}
-                      className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300"
-                    >
-                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`}></div>
-                      <span className="text-white/90 text-sm">{skill}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </GlassCard>
+              </GlassSurface>
             </motion.div>
           ))}
         </div>

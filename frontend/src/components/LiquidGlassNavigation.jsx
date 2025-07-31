@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Home, User, Code, Briefcase, Mail, FolderOpen } from 'lucide-react';
+import { User, Code, Briefcase, Mail, FolderOpen } from 'lucide-react';
 import './LiquidGlassNavigation.css';
+import GlassSurface from './GlassSurface';
+import homeIcon from './../assets/icons/home.svg';
+import personIcon from './../assets/icons/person.svg';
+import projectsIcon from './../assets/icons/projects.svg';
+import experienceIcon from './../assets/icons/experience.svg';
+import contactIcon from './../assets/icons/contact.svg';
 
 const LiquidGlassNavigation = () => {
   const [activeSection, setActiveSection] = useState('hero');
 
   const navigationItems = [
-    { id: 'hero', icon: Home, label: 'Home', href: '#hero' },
-    { id: 'about', icon: User, label: 'About', href: '#about' },
-    { id: 'skills', icon: Code, label: 'Skills', href: '#skills' },
-    { id: 'projects', icon: FolderOpen, label: 'Projects', href: '#projects' },
-    { id: 'experience', icon: Briefcase, label: 'Experience', href: '#experience' },
-    { id: 'contact', icon: Mail, label: 'Contact', href: '#contact' }
+    { id: 'hero', iconSrc: homeIcon, label: 'Home', href: '#hero' },
+    { id: 'about', iconSrc: personIcon, label: 'About', href: '#about' },
+    { id: 'skills', iconSrc: 'https://img.icons8.com/liquid-glass/35/learning.png', label: 'Skills', href: '#skills' },
+    { id: 'projects', iconSrc: projectsIcon, label: 'Projects', href: '#projects' },
+    { id: 'experience', iconSrc: experienceIcon, label: 'Experience', href: '#experience' },
+    { id: 'contact', iconSrc: contactIcon, label: 'Contact', href: '#contact' }
   ];
 
   // Track active section based on scroll position
@@ -46,51 +52,42 @@ const LiquidGlassNavigation = () => {
   };
 
   return (
-    <>
-      {/* SVG Filter for liquid glass effect */}
-      <svg width="0" height="0" style={{ position: 'absolute' }}>
-        <defs>
-          <filter id="glass-distortion">
-            <feTurbulence 
-              type="fractalNoise" 
-              baseFrequency="0.02" 
-              numOctaves="1" 
-              result="noise"
-            />
-            <feDisplacementMap 
-              in="SourceGraphic" 
-              in2="noise" 
-              scale="2"
-            />
-          </filter>
-        </defs>
-      </svg>
-
-      <nav className="liquid-glass-nav">
-        <div className="liquid-glass-wrapper dock">
-          <div className="liquid-glass-effect"></div>
-          <div className="liquid-glass-tint"></div>
-          <div className="liquid-glass-shine"></div>
-          <div className="liquid-glass-text">
-            <div className="dock-container">
-              {navigationItems.map((item) => {
-                const IconComponent = item.icon;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavClick(item)}
-                    className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
-                    title={item.label}
-                  >
-                    <IconComponent size={24} />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+    <nav className="liquid-glass-nav">
+      <GlassSurface
+        width="auto"
+        height="80px"
+        borderRadius={20}
+        brightness={50}
+        blur={10}
+        opacity={0.93}
+        redOffset={0}
+        greenOffset={10}
+        blueOffset={20}
+        displace={0.5}
+        distortionScale={-180}
+        mixBlendMode="screen"
+        className="glass-nav-container"
+      >
+        <div className="dock-container">
+          {navigationItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleNavClick(item)}
+              className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
+              title={item.label}
+            >
+              <img
+                src={item.iconSrc}
+                alt={item.label}
+                width={35}
+                height={35}
+                style={{ filter: activeSection === item.id ? 'brightness(1)' : 'brightness(0.85)', transition: '0.3s' }}
+              />
+            </button>
+          ))}
         </div>
-      </nav>
-    </>
+      </GlassSurface>
+    </nav>
   );
 };
 

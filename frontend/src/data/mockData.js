@@ -1,6 +1,7 @@
 // Mock data for Lucas Bravo Parra's portfolio
 export const personalInfo = {
-  name: "LUCAS BRAVO PARRA",
+  name: "LUCAS",
+  surname: "BRAVO",
   title: "FRONT-END DEVELOPER",
   location: "Madrid, Spain",
   email: "bravoparralucas@gmail.com",
@@ -17,7 +18,7 @@ export const skills = {
   backend: ["API Rest", "PHP", "Java", "C", "C#"],
   databases: ["MySQL", "SQL Server"],
   methodologies: ["Scrum", "Kanban"],
-  os: ["Windows", "Linux (Ubuntu, Ubuntu Server)", "Raspbian"],
+  os: ["Windows (11, 10, Server)", "Linux (Arch, Ubuntu, Ubuntu Server)", "Raspbian"],
   tools: ["VS Code", "Visual Studio", "Git", "GitHub", "Figma"]
 };
 
@@ -67,10 +68,10 @@ export const education = [
 ];
 
 export const projects = [
-  {
+  /*{
     id: 1,
-    title: "Banking Digital Platform",
-    description: "Complete digital marketing projects for major rural banks including landing pages, microsites, and interactive tools.",
+    title: "Can't look at this LOL",
+    description: "Can't look at this LOL but longer.",
     technologies: ["React", "TypeScript", "Tailwind CSS", "REST API"],
     category: "Web Application",
     image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
@@ -82,11 +83,11 @@ export const projects = [
   },
   {
     id: 2,
-    title: "Content Analysis Dashboard",
-    description: "Reactive and optimized UI for content automation and analysis tools for digital media and brands.",
+    title: "Can't look at this LOL",
+    description: "Can't look at this LOL but longer.",
     technologies: ["React", "TypeScript", "Chart.js", "REST API"],
     category: "Dashboard",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwxfHx8ZGFzaGJvYXJkfGVufDB8fHx8MTc1Mjc0NzI4Mnww&ixlib=rb-4.1.0&q=85",
+    image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
     featured: true,
     links: {
       live: "#",
@@ -95,11 +96,11 @@ export const projects = [
   },
   {
     id: 3,
-    title: "E-commerce Platform",
-    description: "Full-stack e-commerce solution with modern UI/UX and payment integration.",
+    title: "Can't look at this LOL",
+    description: "Can't look at this LOL but longer.",
     technologies: ["Vue.js", "Node.js", "MongoDB", "Stripe"],
     category: "Web Application",
-    image: "https://images.unsplash.com/photo-1654618977232-a6c6dea9d1e8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
+    image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
     featured: false,
     links: {
       live: "#",
@@ -108,11 +109,11 @@ export const projects = [
   },
   {
     id: 4,
-    title: "Real-time Chat Application",
-    description: "Modern chat application with real-time messaging and file sharing capabilities.",
+    title: "Can't look at this LOL",
+    description: "Can't look at this LOL but longer.",
     technologies: ["React", "Socket.io", "Node.js", "PostgreSQL"],
     category: "Web Application",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxjb2Rpbmd8ZW58MHx8fHwxNzUyNjM3NDQ1fDA&ixlib=rb-4.1.0&q=85",
+    image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
     featured: false,
     links: {
       live: "#",
@@ -121,42 +122,88 @@ export const projects = [
   },
   {
     id: 5,
-    title: "Task Management System",
-    description: "Agile project management tool with drag-and-drop functionality and team collaboration features.",
+    title: "Can't look at this LOL",
+    description: "Can't look at this LOL but longer.",
     technologies: ["Angular", "TypeScript", "Java", "MySQL"],
     category: "Web Application",
-    image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwyfHxjb2Rpbmd8ZW58MHx8fHwxNzUyNjM3NDQ1fDA&ixlib=rb-4.1.0&q=85",
+    image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
     featured: false,
     links: {
       live: "#",
       github: "#"
     }
-  }
+  }*/
 ];
 
-export const musicPlaylist = [
+export const songs = [
   {
-    id: 1,
-    title: "Power",
-    artist: "Kanye West",
-    album: "My Beautiful Dark Twisted Fantasy",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-    cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhbGJ1bSUyMGNvdmVyfGVufDB8fHx8MTc1Mjc0NzI2OHww&ixlib=rb-4.1.0&q=85&w=200&h=200"
+    title: 'SOMEBODY LOVES ME',
+    artist: 'PARTYNEXTDOOR, Drake',
+    albumArt: 'https://ia600809.us.archive.org/11/items/sss4u/Cover.jpg?cnt=0',
+    audioUrl: 'https://ia800809.us.archive.org/11/items/sss4u/07%20-%20SOMEBODY%20LOVES%20ME.mp3',
+    color: '#4c4235'
   },
   {
-    id: 2,
-    title: "Two Words",
-    artist: "Kanye West",
-    album: "The College Dropout",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-    cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhbGJ1bSUyMGNvdmVyfGVufDB8fHx8MTc1Mjc0NzI2OHww&ixlib=rb-4.1.0&q=85&w=200&h=200"
+    title: 'No Pole',
+    artist: 'Don Toliver',
+    albumArt: 'https://ia801609.us.archive.org/22/items/don-toliver-love-sick-deluxe/Deluxe/cover.jpg?cnt=0',
+    audioUrl: 'https://ia801609.us.archive.org/22/items/don-toliver-love-sick-deluxe/Deluxe/01-No%20Pole.mp3',
+    color: '#7113b5'
   },
   {
-    id: 3,
-    title: "True Love",
-    artist: "Kanye West",
-    album: "Donda 2",
-    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-    cover: "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhbGJ1bSUyMGNvdmVyfGVufDB8fHx8MTc1Mjc0NzI2OHww&ixlib=rb-4.1.0&q=85&w=200&h=200"
-  }
+    title: 'Fountains',
+    artist: 'Drake, Tems',
+    albumArt: 'https://ia601608.us.archive.org/28/items/drake-certified-lover-boy_202303/Certified%20Lover%20Boy.jpg?cnt=0',
+    audioUrl: 'https://dn721902.ca.archive.org/0/items/drake-certified-lover-boy_202303/Drake%20-%20Fountains%20%28with%20Tems%29.mp3',
+    color: '#d8e0ae'
+  },
+  {
+    title: 'Favorite Lie',
+    artist: 'Lil Tecca',
+    albumArt: 'https://ia800707.us.archive.org/3/items/lil-tecca-dopamine/artworks-35OOXOGA9SjkcKZr-7l4KRw-t500x500.jpg?cnt=0',
+    audioUrl: 'https://dn721905.ca.archive.org/0/items/lil-tecca-dopamine/05%20Favorite%20Lie.mp3',
+    color: '#040404'
+  },
+  {
+    title: 'NOKIA',
+    artist: 'Drake',
+    albumArt: 'https://ia600809.us.archive.org/11/items/sss4u/Cover.jpg?cnt=0',
+    audioUrl: 'https://ia904506.us.archive.org/6/items/partynextdoor-drake-some-sexy-songs-4-u/PARTYNEXTDOOR%20%26%20Drake%20%24%24%244U%2014%20NOKIA.mp3',
+    color: '#4c4235'
+  },
+  {
+    title: 'Always Be My Fault',
+    artist: 'Future, Metro Boomin, The Weeknd',
+    albumArt: 'https://ia600305.us.archive.org/12/items/future-metro-boomin-we-still-dont-trust-you/WE%20STILL%20DON%27T%20TRUST%20YOU%20%282024%29/WE%20STILL%20DON%27T%20TRUST%20YOU%20%28Cover%29.jpg?cnt=0',
+    audioUrl: 'https://dn721907.ca.archive.org/0/items/future-metro-boomin-we-still-dont-trust-you/WE%20STILL%20DON%27T%20TRUST%20YOU%20%282024%29/Future%20%26%20Metro%20Boomin%20WSDTY%2016%20Always%20Be%20My%20Fault.mp3',
+    color: '#bebebe'
+  },
+  {
+    title: 'Sky Might Fall',
+    artist: 'Kid Cudi',
+    albumArt: 'https://ia801400.us.archive.org/16/items/man-on-the-moon-kid-cudi/ManonTheMoonTheEndofDay.jpg?cnt=0',
+    audioUrl: 'https://dn720301.ca.archive.org/0/items/man-on-the-moon-kid-cudi/Sky%20Might%20Fall.mp3',
+    color: '#cc5b80'
+  },
+  {
+    title: 'Marijuana',
+    artist: 'Kid Cudi',
+    albumArt: 'https://ia601206.us.archive.org/0/items/man-on-the-moon-2/Kid%20Cudi%20-%20Man%20On%20The%20Moon%20II%20The%20Legend%20Of%20Mr.%20Rager%20%282010%29%20%5B16B-44.1kHz%5D/cover.jpg?cnt=0',
+    audioUrl: 'https://ia801206.us.archive.org/0/items/man-on-the-moon-2/Kid%20Cudi%20-%20Man%20On%20The%20Moon%20II%20The%20Legend%20Of%20Mr.%20Rager%20%282010%29%20%5B16B-44.1kHz%5D/05.%20Marijuana.mp3',
+    color: '#4d392b'
+  },
+  {
+    title: 'The Color Violet',
+    artist: 'Tory Lanez',
+    albumArt: 'https://i.scdn.co/image/ab67616d0000b2730c5f23cbf0b1ab7e37d0dc67',
+    audioUrl: 'https://dn720302.ca.archive.org/0/items/the-color-violet/The%20Color%20Violet.mp3',
+    color: '#632e13'
+  },
+  {
+    title: 'Dark Thoughts',
+    artist: 'Lil Tecca',
+    albumArt: 'https://ia800707.us.archive.org/3/items/lil-tecca-dopamine/artworks-35OOXOGA9SjkcKZr-7l4KRw-t500x500.jpg?cnt=0',
+    audioUrl: 'https://dn721905.ca.archive.org/0/items/lil-tecca-dopamine/01%20Dark%20Thoughts.mp3',
+    color: '#040404'
+  },
 ];

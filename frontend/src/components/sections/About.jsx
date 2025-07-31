@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import GlassCard from '../GlassCard';
+import GlassSurface from './../GlassSurface'
 import { personalInfo } from '../../data/mockData';
 
 const About = () => {
   return (
-    <section id="about" className="min-h-screen py-20 px-6 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <section id="about" className="min-h-screen py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -25,8 +25,23 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
+            className="h-full"
           >
-            <GlassCard className="h-full">
+            <GlassSurface
+              width="auto"
+              height="100%"
+              borderRadius={17}
+              brightness={50}
+              blur={10}
+              opacity={0.93}
+              redOffset={0}
+              greenOffset={10}
+              blueOffset={20}
+              displace={0.5}
+              distortionScale={-100}
+              mixBlendMode="screen"
+              className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
+            >
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-white mb-4">
                   Professional Profile
@@ -39,7 +54,7 @@ const About = () => {
                   I'm looking for projects where I can continue to grow and contribute from the front lines.
                 </p>
               </div>
-            </GlassCard>
+            </GlassSurface>
           </motion.div>
 
           <motion.div
@@ -47,37 +62,69 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="flex flex-col h-full gap-6"
           >
-            <GlassCard>
-              <h3 className="text-xl font-bold text-white mb-4">Languages</h3>
-              <div className="space-y-3">
-                {personalInfo.languages.map((lang, index) => (
-                  <div key={index} className="flex justify-between items-center">
-                    <span className="text-white/90">{lang.name}</span>
-                    <span className="text-white/60 text-sm">{lang.level}</span>
-                  </div>
-                ))}
+            <GlassSurface
+              width="auto"
+              height="calc(40% - 12px)"
+              borderRadius={17}
+              brightness={50}
+              blur={10}
+              opacity={0.93}
+              redOffset={0}
+              greenOffset={10}
+              blueOffset={20}
+              displace={0.5}
+              distortionScale={-100}
+              mixBlendMode="screen"
+              className="p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
+            >
+              <div className="flex flex-col w-full">
+                <h3 className="text-xl font-bold text-white mb-4 w-full">Languages</h3>
+                <div className="space-y-3 w-full">
+                  {personalInfo.languages.map((lang, index) => (
+                    <div key={index} className="flex justify-between items-center">
+                      <span className="text-white/90">{lang.name}</span>
+                      <span className="text-white/60 text-sm">{lang.level}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </GlassCard>
+            </GlassSurface>
 
-            <GlassCard>
-              <h3 className="text-xl font-bold text-white mb-4">Additional Info</h3>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <span className="text-white/90">📍</span>
-                  <span className="text-white/80">{personalInfo.location}</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-white/90">📧</span>
-                  <span className="text-white/80">{personalInfo.email}</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-white/90">🚗</span>
-                  <span className="text-white/80">{personalInfo.license}</span>
+            <GlassSurface
+              width="auto"
+              height="calc(60% - 12px)"
+              borderRadius={17}
+              brightness={50}
+              blur={10}
+              opacity={0.93}
+              redOffset={0}
+              greenOffset={10}
+              blueOffset={20}
+              displace={0.5}
+              distortionScale={-100}
+              mixBlendMode="screen"
+              className="p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
+            >
+              <div className="flex flex-col w-full">
+                <h3 className="text-xl font-bold text-white mb-4 w-full">Additional Info</h3>
+                <div className="space-y-3 w-full">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-white/90"><img src="https://img.icons8.com/liquid-glass/30/worldwide-location.png" alt="Location" /></span>
+                    <span className="text-white/80">{personalInfo.location}</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-white/90"><img src="https://img.icons8.com/liquid-glass/30/email-sign.png" alt="Email" /></span>
+                    <span className="text-white/80">{personalInfo.email}</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-white/90"><img src="https://img.icons8.com/liquid-glass/30/tesla-model-x.png" alt="Car" /></span>
+                    <span className="text-white/80">{personalInfo.license}</span>
+                  </div>
                 </div>
               </div>
-            </GlassCard>
+            </GlassSurface>
           </motion.div>
         </div>
       </div>

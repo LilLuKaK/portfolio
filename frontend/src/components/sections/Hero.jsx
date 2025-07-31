@@ -1,27 +1,11 @@
 import { motion } from 'framer-motion';
-import FluidGlass from '../FluidGlass';
+import GlassSurface from './../GlassSurface'
 import { personalInfo } from '../../data/mockData';
 
 const Hero = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background with silk effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
-        <div className="absolute inset-0 opacity-70">
-          <FluidGlass
-            mode="lens"
-            lensProps={{
-              scale: 0.25,
-              ior: 1.15,
-              thickness: 5,
-              chromaticAberration: 0.1,
-              anisotropy: 0.01
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Content */}
+      {/* Content Layer */}
       <div className="relative z-10 text-center px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -30,12 +14,14 @@ const Hero = () => {
           className="max-w-4xl mx-auto"
         >
           <motion.h1
-            className="text-6xl md:text-8xl font-black text-white mb-6 leading-tight"
-            initial={{ opacity: 0, scale: 0.9 }}
+            className="text-6xl md:text-9xl font-black text-white mb-6 leading-tight"
+            initial={{ opacity: 0, scale: 1.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.7 }}
           >
             {personalInfo.name}
+            <br></br>
+            {personalInfo.surname}
           </motion.h1>
           
           <motion.p
@@ -46,7 +32,7 @@ const Hero = () => {
           >
             {personalInfo.title}
           </motion.p>
-          
+
           <motion.p
             className="text-lg text-white/60 mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
@@ -62,17 +48,44 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.3 }}
           >
-            <button 
+            {/* View My Work Button */}
+            <button
               onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-105 shadow-xl"
+              className="transition-all duration-300 transform hover:scale-105"
             >
-              View My Work
+              <GlassSurface
+                borderRadius={50}
+                displace={0.5}
+                distortionScale={-180}
+                redOffset={0}
+                greenOffset={10}
+                blueOffset={20}
+                brightness={50}
+                opacity={0.93}
+                mixBlendMode="screen"
+              >
+                <span className="px-8 py-4 text-white">View My Work</span>
+              </GlassSurface>
             </button>
-            <button 
+
+            {/* Get In Touch Button */}
+            <button
               onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl text-white hover:bg-white/15 transition-all duration-300 transform hover:scale-105"
+              className="transition-all duration-300 transform hover:scale-105"
             >
-              Get In Touch
+              <GlassSurface
+                borderRadius={50}
+                displace={0.5}
+                distortionScale={-180}
+                redOffset={0}
+                greenOffset={10}
+                blueOffset={20}
+                brightness={50}
+                opacity={0.93}
+                mixBlendMode="screen"
+              >
+                <span className="px-8 py-4 text-white">Download CV</span>
+              </GlassSurface>
             </button>
           </motion.div>
         </motion.div>
