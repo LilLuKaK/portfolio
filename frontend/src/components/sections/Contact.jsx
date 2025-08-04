@@ -1,91 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Download, Github, Linkedin } from 'lucide-react';
-import GlassCard from '../GlassCard';
+import { useI18n } from '../../context/i18nContext';
 import GlassSurface from './../GlassSurface'
 import { personalInfo } from '../../data/mockData';
+import { fetchContactStatus } from './../../hooks/fetchContactStatus';
 
 const Contact = () => {
-  const [rotomStatus, setRotomStatus] = useState(null); // Null hasta tener el estado
-  const [imageTimestamp, setImageTimestamp] = useState(0); // Para forzar recarga
+  const { t } = useI18n();
+  const [rotomStatus, setRotomStatus] = useState('offline');
   
-  const getRotomImage = (status) => {
-    const baseImages = {
-      online: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Happy.png',
-      ausente: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Normal.png',
-      offline: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Sigh.png',
-    };
-    
-    // Añadir timestamp para evitar caché
-    return `${baseImages[status || 'offline']}?t=${imageTimestamp}`;
+  const rotomImages = {
+    online: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Joyous.png',
+    ausente: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Normal.png',
+    offline: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Sigh.png',
   };
 
   useEffect(() => {
-    const fetchContactStatus = async () => {
-      try {
-        const res = await fetch(
-          'https://docs.google.com/spreadsheets/d/1xzjmg6DQ7TbiSTYmS-8tA7iUeg8J5RU4-Ixl6JgOEEs/gviz/tq?tqx=out:json'
-        );
-        const text = await res.text();
-        
-        // Parsear respuesta
-        const json = JSON.parse(text.substr(47).slice(0, -2));
-        const estado = json.table.rows[0]?.c?.[0]?.v?.toLowerCase() || 'offline';
-        
-        console.log('Estado obtenido:', estado);
-        setRotomStatus(estado);
-        setImageTimestamp(Date.now()); // Forzar recarga de imagen
-      } catch (error) {
-        console.error('Error fetching contact status:', error);
-        setRotomStatus('offline');
-        setImageTimestamp(Date.now());
-      }
+    const getContactStatus = async () => {
+      const status = await fetchContactStatus();
+      setRotomStatus(status);
     };
-
-    fetchContactStatus();
+    
+    getContactStatus();
   }, []);
-  
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setSubmitStatus('success');
-    setIsSubmitting(false);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
-    
-    // Clear status after 3 seconds
-    setTimeout(() => setSubmitStatus(null), 3000);
-  };
 
   const handleDownloadResume = () => {
-    // Mock download functionality
     alert('Resume download functionality will be implemented with backend integration');
   };
 
@@ -100,12 +40,11 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6">
-            Get In Touch
+            {t('contact_title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto"></div>
           <p className="text-white/70 text-lg mt-6 max-w-2xl mx-auto">
-            I'm always interested in new opportunities and collaborations. 
-            Let's discuss how we can work together to create something amazing.
+            {t('contact_subtitle')}
           </p>
         </motion.div>
 
@@ -129,14 +68,14 @@ const Contact = () => {
               greenOffset={10}
               blueOffset={20}
               displace={0.5}
-              distortionScale={-100}
+              distortionScale={-10}
               mixBlendMode="screen"
               className="p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale" // Añade flex-col aquí
             >
               <div className="flex flex-col w-full p-6">
                 {/* Título (ocupa todo el ancho superior) */}
                 <h3 className="text-2xl font-bold text-white mb-6 w-full">
-                  Let's Connect
+                  {t('contact_connect')}
                 </h3>
                 
                 {/* Contenedor de contactos (ocupa todo el ancho restante) */}
@@ -147,8 +86,8 @@ const Contact = () => {
                       <img src="https://img.icons8.com/liquid-glass/48/email-sign.png" alt="Email" className="w-12 h-12" />
                     </div>
                     <div className="flex-1 min-w-0"> {/* Asegura que el texto no desborde */}
-                      <p className="text-white/90 font-medium">Email</p>
-                      <p className="text-white/70 truncate">{personalInfo.email}</p> {/* truncate para emails largos */}
+                      <p className="text-white/90 font-medium">{t('contact_email')}</p>
+                      <p className="text-white/70 truncate">{personalInfo.email}</p>
                     </div>
                   </div>
                   
@@ -159,7 +98,7 @@ const Contact = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-white/90 font-medium">Location</p>
-                      <p className="text-white/70">{personalInfo.location}</p>
+                      <p className="text-white/70">{t('experience_location')}</p>
                     </div>
                   </div>
                 </div>
@@ -177,21 +116,22 @@ const Contact = () => {
               greenOffset={10}
               blueOffset={20}
               displace={0.5}
-              distortionScale={-100}
+              distortionScale={-10}
               mixBlendMode="screen"
               className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
             >
               <div className="flex flex-col w-full p-6">
                 <h3 className="text-xl font-bold text-white mb-6">
-                  Download Resume
+                  {t('contact_download')}
                 </h3>
-                <button
-                  onClick={handleDownloadResume}
+                <a
+                  href="../../assets/CV_LucasBravoParra_FEDev.pdf"
+                  download="CV_LucasBravoParra_FEDev.pdf"
                   className="w-full flex items-center justify-center space-x-3 px-6 py-4 bg-gradient-to-r from-stone-500 to-neutral-400 rounded-2xl text-white font-medium hover:from-blue-500 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
                 >
                   <Download className="w-5 h-5" />
-                  <span>Download CV</span>
-                </button>
+                  <span>{t('contact_download')}</span>
+                </a>
               </div>
             </GlassSurface>
 
@@ -206,13 +146,13 @@ const Contact = () => {
               greenOffset={10}
               blueOffset={20}
               displace={0.5}
-              distortionScale={-100}
+              distortionScale={-10}
               mixBlendMode="screen"
               className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
             >
               <div className="flex flex-col w-full p-6">
                 <h3 className="text-xl font-bold text-white mb-6">
-                  Social Links
+                  {t('contact_social')}
                 </h3>
                 <div className="flex space-x-4">
                   <a 
@@ -259,137 +199,82 @@ const Contact = () => {
               greenOffset={10}
               blueOffset={20}
               displace={0.5}
-              distortionScale={-100}
+              distortionScale={-10}
               mixBlendMode="screen"
               className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
             >
               <div className="flex flex-col w-full p-6">
-                {/* Mostrar estado solo cuando se haya obtenido */}
-                {rotomStatus !== null ? (
-                  <div className="flex items-center space-x-4 mb-6">
+                <div className="flex flex-col w-full p-6 space-y-6">
+                  {/* Header con estado e imagen */}
+                  <div className="flex items-center space-x-4">
                     <img
-                      src={getRotomImage(rotomStatus)}
+                      src={rotomImages[rotomStatus]}
                       alt={`Rotom ${rotomStatus}`}
                       className="w-16 h-16 rounded-md border-2 border-white object-contain"
                       style={{ imageRendering: 'pixelated' }}
-                      key={`rotom-${imageTimestamp}`} // Key única para forzar recarga
                     />
                     <div>
                       <h3 className="text-2xl font-bold text-white">
-                        Want to contact me?
+                        {t('contact_wantto')}
                       </h3>
                       <p className="text-sm text-white/70 capitalize">
                         Status: {rotomStatus}
                       </p>
                     </div>
                   </div>
-                ) : (
-                  <div className="flex items-center space-x-4 mb-6">
-                    <div className="w-16 h-16 rounded-md bg-gray-700 animate-pulse flex items-center justify-center">
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-white">
-                        Checking availability...
-                      </h3>
-                      <p className="text-sm text-white/70">
-                        Loading status...
-                      </p>
-                    </div>
-                  </div>
-                )}
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
-                        placeholder="Your Name"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white/80 text-sm font-medium mb-2">
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
-                      placeholder="Project Discussion"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white/80 text-sm font-medium mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={6}
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="Tell me about your project..."
-                    />
-                  </div>
-                  
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex items-center justify-center space-x-3 px-6 py-4 bg-gradient-to-r from-blue-400 to-purple-600 rounded-2xl text-white font-medium hover:from-blue-500 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Sending...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        <span>Send Message</span>
-                      </>
+
+                  {/* Explicación del estado */}
+                  <div className="text-white/80 text-sm space-y-3">
+                    {rotomStatus === 'online' && (
+                      <p>{t('contact_online')}</p>
                     )}
-                  </button>
-                  
-                  {submitStatus === 'success' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-green-400 text-center"
-                    >
-                      Message sent successfully! I'll get back to you soon.
-                    </motion.div>
-                  )}
-                </form>
+                    {rotomStatus === 'ausente' && (
+                      <p>{t('contact_away')}</p>
+                    )}
+                    {rotomStatus === 'offline' && (
+                      <p>{t('contact_offline')}</p>
+                    )}
+                  </div>
+
+                  {/* Tiempo estimado de respuesta */}
+                  <div className="text-white/60 text-xs">
+                    <p className="italic">{t('contact_estimated')}
+                      <span className="ml-1 font-medium text-white">
+                        {rotomStatus === 'online' ? t('contact_response_online') : rotomStatus === 'ausente' ? t('contact_response_away') : t('contact_response_offline')}
+                      </span>
+                    </p>
+                  </div>
+
+                  {/* Horario de disponibilidad */}
+                  <div className="text-white/70 text-sm">
+                    <p className="font-semibold mb-1">🕹 Usual Availability:</p>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>Monday–Friday: 7:00 – 23:00 UTC+2</li>
+                      <li>Saturday-Sunday: 9:00 – 23:00 UTC+2</li>
+                      <li>Usually online: 8:00 - 21:00</li>
+                      <li>Usually absent: 21:00 - 23:00 / 6:00 - 8:00</li>
+                      <li>Usually offline: 23:00 - 6:00</li>
+                    </ul>
+                  </div>
+
+                  {/* Tips para enviar un mensaje */}
+                  <div className="text-white/70 text-sm">
+                    <p className="font-semibold mb-1">{t('contact_tips')}</p>
+                    <ul className="list-disc list-inside space-y-1">
+                      <li>{t('contact_tips1')}</li>
+                      <li>{t('contact_tips2')}</li>
+                      <li>{t('contact_tips3')}</li>
+                    </ul>
+                  </div>
+
+                  {/* Cita inspiradora / toque personal */}
+                  <div className="border-t border-white/20 pt-4 mt-2 text-center">
+                    <p className="italic text-white/60 text-sm">
+                      "{t('contact_tips3')}"
+                    </p>
+                    <p className="text-white/50 text-xs mt-1">— Rotom 🤖</p>
+                  </div>
+                </div>
               </div>
             </GlassSurface>
           </motion.div>

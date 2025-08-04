@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { User, Code, Briefcase, Mail, FolderOpen } from 'lucide-react';
+import { useI18n } from '../context/i18nContext';
 import './LiquidGlassNavigation.css';
 import GlassSurface from './GlassSurface';
 import homeIcon from './../assets/icons/home.svg';
@@ -9,15 +10,16 @@ import experienceIcon from './../assets/icons/experience.svg';
 import contactIcon from './../assets/icons/contact.svg';
 
 const LiquidGlassNavigation = () => {
+  const { t } = useI18n();
   const [activeSection, setActiveSection] = useState('hero');
 
   const navigationItems = [
-    { id: 'hero', iconSrc: homeIcon, label: 'Home', href: '#hero' },
-    { id: 'about', iconSrc: personIcon, label: 'About', href: '#about' },
-    { id: 'skills', iconSrc: 'https://img.icons8.com/liquid-glass/35/learning.png', label: 'Skills', href: '#skills' },
-    { id: 'projects', iconSrc: projectsIcon, label: 'Projects', href: '#projects' },
-    { id: 'experience', iconSrc: experienceIcon, label: 'Experience', href: '#experience' },
-    { id: 'contact', iconSrc: contactIcon, label: 'Contact', href: '#contact' }
+    { id: 'hero', iconSrc: homeIcon, label: t('nav_home'), href: '#hero' },
+    { id: 'about', iconSrc: personIcon, label: t('nav_about'), href: '#about' },
+    { id: 'skills', iconSrc: 'https://img.icons8.com/liquid-glass/35/learning.png', label: t('nav_skills'), href: '#skills' },
+    { id: 'projects', iconSrc: projectsIcon, label: t('nav_projects'), href: '#projects' },
+    { id: 'experience', iconSrc: experienceIcon, label: t('nav_experience'), href: '#experience' },
+    { id: 'contact', iconSrc: contactIcon, label: t('nav_contact'), href: '#contact' }
   ];
 
   // Track active section based on scroll position

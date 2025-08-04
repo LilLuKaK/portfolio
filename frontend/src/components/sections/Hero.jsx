@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../context/i18nContext';
 import GlassSurface from './../GlassSurface'
 import { personalInfo } from '../../data/mockData';
 
 const Hero = () => {
+  const { t } = useI18n();
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Content Layer */}
@@ -14,7 +16,8 @@ const Hero = () => {
           className="max-w-4xl mx-auto"
         >
           <motion.h1
-            className="text-6xl md:text-9xl font-black text-white mb-6 leading-tight"
+            className="text-6xl md:text-[160px] font-black text-white mb-6 leading-tight"
+            style={{ lineHeight: '1' }}
             initial={{ opacity: 0, scale: 1.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.7 }}
@@ -39,7 +42,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.1 }}
           >
-            {personalInfo.location}
+            {t('hero_location')}
           </motion.p>
 
           <motion.div
@@ -49,10 +52,7 @@ const Hero = () => {
             transition={{ duration: 1, delay: 1.3 }}
           >
             {/* View My Work Button */}
-            <button
-              onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-              className="transition-all duration-300 transform hover:scale-105"
-            >
+            <button onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}>
               <GlassSurface
                 borderRadius={50}
                 displace={0.5}
@@ -64,7 +64,7 @@ const Hero = () => {
                 opacity={0.93}
                 mixBlendMode="screen"
               >
-                <span className="px-8 py-4 text-white">View My Work</span>
+                <span className="px-8 py-4 text-white">{t('hero_view_work')}</span>
               </GlassSurface>
             </button>
 
@@ -84,7 +84,7 @@ const Hero = () => {
                 opacity={0.93}
                 mixBlendMode="screen"
               >
-                <span className="px-8 py-4 text-white">Download CV</span>
+                <span className="px-8 py-4 text-white">{t('hero_download_cv')}</span>
               </GlassSurface>
             </button>
           </motion.div>

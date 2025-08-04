@@ -84,3 +84,24 @@ code {
     @apply bg-background text-foreground;
     }
 }
+
+/* Añadir estas reglas CSS */
+.animate-active {
+  animation-play-state: running !important;
+}
+
+[data-animate] {
+  animation-play-state: paused;
+}
+
+/* Reducir la calidad de las imágenes con filtro */
+img {
+  image-rendering: optimizeQuality;
+  filter: brightness(1.02) contrast(1.02);
+}
+
+/* Simplificar animaciones */
+@keyframes pulse-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}

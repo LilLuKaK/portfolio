@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { Heart, Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { useI18n } from '../../context/i18nContext';
 import { personalInfo } from '../../data/mockData';
 
 const Footer = () => {
+  const { t } = useI18n();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -37,31 +39,30 @@ const Footer = () => {
             viewport={{ once: true }}
             className="flex flex-col md:items-center"
           >
-            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
             <div className="flex flex-col space-y-2">
               <a 
                 href="#about" 
                 className="text-white/70 hover:text-white transition-colors duration-300 text-sm"
               >
-                About
+                {t('nav_about')}
               </a>
               <a 
                 href="#skills" 
                 className="text-white/70 hover:text-white transition-colors duration-300 text-sm"
               >
-                Skills
+                {t('nav_skills')}
               </a>
               <a 
                 href="#projects" 
                 className="text-white/70 hover:text-white transition-colors duration-300 text-sm"
               >
-                Projects
+                {t('nav_projects')}
               </a>
               <a 
                 href="#contact" 
                 className="text-white/70 hover:text-white transition-colors duration-300 text-sm"
               >
-                Contact
+                {t('nav_contact')}
               </a>
             </div>
           </motion.div>
@@ -74,22 +75,21 @@ const Footer = () => {
             viewport={{ once: true }}
             className="flex flex-col md:items-end"
           >
-            <h4 className="text-white font-semibold mb-4">Connect</h4>
             <div className="flex space-x-4">
               <a 
-                href="#" 
+                href="https://github.com/LilLuKaK" 
                 className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110"
               >
                 <Github className="w-5 h-5 text-white" />
               </a>
               <a 
-                href="#" 
+                href="https://www.linkedin.com/in/lucasbravoparra/" 
                 className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110"
               >
                 <Linkedin className="w-5 h-5 text-white" />
               </a>
               <a 
-                href={`mailto:${personalInfo.email}`}
+                href="mailto:bravoparralucas@gmail.com"
                 className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110"
               >
                 <Mail className="w-5 h-5 text-white" />
@@ -107,7 +107,7 @@ const Footer = () => {
           className="border-t border-white/10 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-white/50 text-sm flex items-center">
-            Made with <Heart className="w-4 h-4 text-red-500 mx-1" /> by Lucas Bravo Parra
+            {t('footer_made_with')} <Heart className="w-4 h-4 text-red-500 mx-1" /> by Lucas Bravo Parra
           </p>
           <p className="text-white/40 text-xs mt-2 md:mt-0">
             © {new Date().getFullYear()} All rights reserved

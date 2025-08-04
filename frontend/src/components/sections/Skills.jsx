@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
-import GlassCard from '../GlassCard';
+import { useI18n } from '../../context/i18nContext';
 import GlassSurface from './../GlassSurface'
 import { skills } from '../../data/mockData';
 
 const Skills = () => {
+  const { t } = useI18n();
   const skillCategories = [
     {
       title: 'Frontend',
@@ -18,25 +19,25 @@ const Skills = () => {
       icon: 'https://img.icons8.com/liquid-glass/48/program.png' // Engranaje
     },
     {
-      title: 'Databases',
+      title: t('skills_bbdd'),
       skills: skills.databases,
       color: 'from-yellow-400 to-orange-600',
       icon: 'https://img.icons8.com/liquid-glass/48/cloud-database.png' // Base de datos
     },
     {
-      title: 'Methodologies',
+      title: t('skills_methodologies'),
       skills: skills.methodologies,
       color: 'from-pink-400 to-red-600',
       icon: 'https://img.icons8.com/liquid-glass/48/test.png' // Lista de tareas
     },
     {
-      title: 'Operating Systems',
+      title: t('skills_os'),
       skills: skills.os,
       color: 'from-indigo-400 to-purple-600',
       icon: 'https://img.icons8.com/liquid-glass/48/happy-mac.png' // Monitor
     },
     {
-      title: 'Tools',
+      title: t('skills_tools'),
       skills: skills.tools,
       color: 'from-teal-400 to-cyan-600',
       icon: 'https://img.icons8.com/liquid-glass/48/full-tool-storage-box-.png' // Herramientas
@@ -54,7 +55,7 @@ const Skills = () => {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6">
-            Skills & Technologies
+            {t('skills_title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto"></div>
         </motion.div>
@@ -79,7 +80,7 @@ const Skills = () => {
                 greenOffset={10}
                 blueOffset={20}
                 displace={0.5}
-                distortionScale={-100}
+                distortionScale={-10}
                 mixBlendMode="screen"
                 className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
               >

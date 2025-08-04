@@ -1,15 +1,22 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Filter } from 'lucide-react';
-import GlassCard from '../GlassCard';
+import { useI18n } from '../../context/i18nContext';
 import GlassSurface from './../GlassSurface'
 import { projects } from '../../data/mockData';
 
 const Projects = () => {
+  const { t } = useI18n();
+  
+  const categories = [
+    t('filter_all'), 
+    t('filter_web'), 
+    t('filter_dashboard'), 
+    t('filter_ui')
+  ];
+
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
-  
-  const categories = ['All', 'Web Application', 'Dashboard', 'UI/UX Design'];
   
   const filteredProjects = selectedCategory === 'All' 
     ? projects 
@@ -26,7 +33,7 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6">
-            Featured Projects
+            {t('projects_title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto"></div>
         </motion.div>
@@ -64,7 +71,7 @@ const Projects = () => {
             className="text-center text-white/70 text-lg mb-12"
           >
             <div className="inline-block px-6 py-4 border border-white/20 rounded-xl bg-white/10 backdrop-blur-md">
-              🚧 This section is under construction. Projects will appear here soon!
+              {t('projects_under_construction')}
             </div>
           </motion.div>
         )}
@@ -95,7 +102,7 @@ const Projects = () => {
                   greenOffset={10}
                   blueOffset={20}
                   displace={0.5}
-                  distortionScale={-100}
+                  distortionScale={-10}
                   mixBlendMode="screen"
                   className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
                 >
@@ -169,7 +176,7 @@ const Projects = () => {
           className="text-center mt-16"
         >
           <p className="text-white/70 text-lg mb-6">
-            Interested in my work?
+            {t('projects_interest')}
           </p>
           <button
             onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
@@ -186,7 +193,7 @@ const Projects = () => {
               opacity={0.93}
               mixBlendMode="screen"
             >
-              <span className="px-8 py-4 text-white">Contact Me!</span>
+              <span className="px-8 py-4 text-white">{t('projects_contact')}</span>
             </GlassSurface>
           </button>
         </motion.div>
