@@ -105,3 +105,51 @@ img {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.02); }
 }
+
+/* Efecto glass optimizado para móviles */
+.glass-effect-mobile {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 17px;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    inset 0 0 10px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.glass-effect-mobile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 100% 100%,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 40%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Mejoras para modo oscuro en móviles */
+@media (prefers-color-scheme: dark) {
+  .glass-effect-mobile {
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Desactivar efecto glass en navegadores que no soportan backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+  .glass-effect-mobile {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .glass-effect-mobile {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+}

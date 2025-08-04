@@ -45,14 +45,15 @@ const Experience = () => {
                 width="auto"
                 height="100%"
                 borderRadius={17}
-                brightness={0}
-                blur={0}
-                opacity={0}
+                brightness={50}
+                blur={10}
+                opacity={0.93}
                 redOffset={0}
-                greenOffset={0}
-                blueOffset={0}
-                displace={0}
-                distortionScale={0}
+                greenOffset={10}
+                blueOffset={20}
+                displace={0.5}
+                distortionScale={-10}
+                mixBlendMode="screen"
                 className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
               >
                 
@@ -104,14 +105,15 @@ const Experience = () => {
                 width="auto"
                 height="100%"
                 borderRadius={17}
-                brightness={0}
-                blur={0}
-                opacity={0}
+                brightness={50}
+                blur={10}
+                opacity={0.93}
                 redOffset={0}
-                greenOffset={0}
-                blueOffset={0}
-                displace={0}
-                distortionScale={0}
+                greenOffset={10}
+                blueOffset={20}
+                displace={0.5}
+                distortionScale={-10}
+                mixBlendMode="screen"
                 className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
               >
                 
@@ -177,14 +179,15 @@ const Experience = () => {
                 width="auto"
                 height="100%"
                 borderRadius={17}
-                brightness={0}
-                blur={0}
-                opacity={0}
+                brightness={50}
+                blur={10}
+                opacity={0.93}
                 redOffset={0}
-                greenOffset={0}
-                blueOffset={0}
-                displace={0}
-                distortionScale={0}
+                greenOffset={10}
+                blueOffset={20}
+                displace={0.5}
+                distortionScale={-10}
+                mixBlendMode="screen"
                 className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
               >
                 
