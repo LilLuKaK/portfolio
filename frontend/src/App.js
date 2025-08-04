@@ -183,7 +183,7 @@ const Portfolio = () => {
       artist: 'Drake',
       albumArt: 'https://ia601608.us.archive.org/12/items/drake-take-care-deluxe/Take%20Care%20%28Deluxe%29.jpg',
       audioUrl: 'https://ia801608.us.archive.org/12/items/drake-take-care-deluxe/Drake%20-%20Look%20What%20You%27ve%20Done.mp3',
-      startHour: 21, // 00:00 UTC+2
+      startHour: 20, // 00:00 UTC+2
       color: '#7c4c2d'
     },
     {
@@ -191,7 +191,7 @@ const Portfolio = () => {
       artist: 'Toby Fox',
       albumArt: 'https://ia801504.us.archive.org/6/items/undertaleost_202004/Undertale%20-%20Lossless%20Soundtrack%20%28toby%20fox%29/toby%20fox%20-%20UNDERTALE%20Soundtrack%20-%20cover.png',
       audioUrl: 'https://ia601504.us.archive.org/6/items/undertaleost_202004/Undertale%20-%20Lossless%20Soundtrack%20%28toby%20fox%29/toby%20fox%20-%20UNDERTALE%20Soundtrack%20-%2001%20Once%20Upon%20a%20Time.mp3',
-      startHour: 22, // 00:00 UTC+2
+      startHour: 21, // 00:00 UTC+2
       color: '#1c2058'
     },
     {
