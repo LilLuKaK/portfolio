@@ -270,7 +270,7 @@ const Contact = () => {
                   {/* Cita inspiradora / toque personal */}
                   <div className="border-t border-white/20 pt-4 mt-2 text-center">
                     <p className="italic text-white/60 text-sm">
-                      "{t('contact_tips3')}"
+                      "{t('contact_quote')}"
                     </p>
                     <p className="text-white/50 text-xs mt-1">— Rotom 🤖</p>
                   </div>
