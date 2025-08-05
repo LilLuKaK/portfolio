@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useI18n } from '../../context/i18nContext';
-import GlassSurface from './../GlassSurface'
+import GlassSurface from './../GlassSurface';
 import { experience, education } from '../../data/mockData';
 
 const Experience = () => {
@@ -41,22 +41,8 @@ const Experience = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <GlassSurface
-                width="auto"
-                height="100%"
-                borderRadius={17}
-                brightness={50}
-                blur={10}
-                opacity={0.93}
-                redOffset={0}
-                greenOffset={10}
-                blueOffset={20}
-                displace={0.5}
-                distortionScale={-10}
-                mixBlendMode="screen"
-                className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
-              >
-                
+              {/* Versión móvil (glass simple) */}
+              <div className="md:hidden glass-effect-mobile h-full p-6">
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-xl font-bold text-white">{t('experience_position1')}</h4>
@@ -92,7 +78,62 @@ const Experience = () => {
                     </li>
                   </ul>
                 </div>
-              </GlassSurface>
+              </div>
+              
+              {/* Versión desktop (GlassSurface) */}
+              <div className="hidden md:block h-full">
+                <GlassSurface
+                  width="auto"
+                  height="100%"
+                  borderRadius={17}
+                  brightness={50}
+                  blur={10}
+                  opacity={0.93}
+                  redOffset={0}
+                  greenOffset={10}
+                  blueOffset={20}
+                  displace={0.5}
+                  distortionScale={-25}
+                  mixBlendMode="screen"
+                  className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
+                >
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-xl font-bold text-white">{t('experience_position1')}</h4>
+                      <p className="text-neutral-400 font-semibold">{t('experience_company1')}</p>
+                      <div className="flex flex-wrap gap-4 mt-2 text-white/60 text-sm">
+                        <div className="flex items-center">
+                          <img src="https://img.icons8.com/liquid-glass/16/calendar.png" alt="Calendar" className="w-4 h-4 mr-1" />
+                          {t('experience_period1')}
+                        </div>
+                        <div className="flex items-center">
+                          <img src="https://img.icons8.com/liquid-glass/16/worldwide-location.png" alt="MapPin" className="w-4 h-4 mr-1" />
+                          {t('experience_location')}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <ul className="space-y-2">
+                      <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                        <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        {t('experience_description1.1')}
+                      </li>
+                      <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                        <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        {t('experience_description1.2')}
+                      </li>
+                      <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                        <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        {t('experience_description1.3')}
+                      </li>
+                      <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                        <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        {t('experience_description1.4')}
+                      </li>
+                    </ul>
+                  </div>
+                </GlassSurface>
+              </div>
             </motion.div>
             
             <motion.div
@@ -101,22 +142,8 @@ const Experience = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <GlassSurface
-                width="auto"
-                height="100%"
-                borderRadius={17}
-                brightness={50}
-                blur={10}
-                opacity={0.93}
-                redOffset={0}
-                greenOffset={10}
-                blueOffset={20}
-                displace={0.5}
-                distortionScale={-10}
-                mixBlendMode="screen"
-                className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
-              >
-                
+              {/* Versión móvil (glass simple) */}
+              <div className="md:hidden glass-effect-mobile h-full p-6">
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-xl font-bold text-white">{t('experience_position1')}</h4>
@@ -152,7 +179,62 @@ const Experience = () => {
                     </li>
                   </ul>
                 </div>
-              </GlassSurface>
+              </div>
+              
+              {/* Versión desktop (GlassSurface) */}
+              <div className="hidden md:block h-full">
+                <GlassSurface
+                  width="auto"
+                  height="100%"
+                  borderRadius={17}
+                  brightness={50}
+                  blur={10}
+                  opacity={0.93}
+                  redOffset={0}
+                  greenOffset={10}
+                  blueOffset={20}
+                  displace={0.5}
+                  distortionScale={-25}
+                  mixBlendMode="screen"
+                  className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
+                >
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-xl font-bold text-white">{t('experience_position1')}</h4>
+                      <p className="text-neutral-400 font-semibold">{t('experience_company2')}</p>
+                      <div className="flex flex-wrap gap-4 mt-2 text-white/60 text-sm">
+                        <div className="flex items-center">
+                          <img src="https://img.icons8.com/liquid-glass/16/calendar.png" alt="Calendar" className="w-4 h-4 mr-1" />
+                          {t('experience_period2')}
+                        </div>
+                        <div className="flex items-center">
+                          <img src="https://img.icons8.com/liquid-glass/16/worldwide-location.png" alt="MapPin" className="w-4 h-4 mr-1" />
+                          {t('experience_location')}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <ul className="space-y-2">
+                      <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                        <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        {t('experience_description2.1')}
+                      </li>
+                      <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                        <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        {t('experience_description2.2')}
+                      </li>
+                      <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                        <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        {t('experience_description2.3')}
+                      </li>
+                      <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                        <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        {t('experience_description2.4')}
+                      </li>
+                    </ul>
+                  </div>
+                </GlassSurface>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -175,22 +257,8 @@ const Experience = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <GlassSurface
-                width="auto"
-                height="100%"
-                borderRadius={17}
-                brightness={50}
-                blur={10}
-                opacity={0.93}
-                redOffset={0}
-                greenOffset={10}
-                blueOffset={20}
-                displace={0.5}
-                distortionScale={-10}
-                mixBlendMode="screen"
-                className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
-              >
-                
+              {/* Versión móvil (glass simple) */}
+              <div className="md:hidden glass-effect-mobile h-full p-6">
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-xl font-bold text-white">{t('experience_grade')}</h4>
@@ -208,6 +276,60 @@ const Experience = () => {
                   </div>
                   
                   <ul className="space-y-2">
+                    <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                      <span className="w-2 h-2 bg-gradient-to-r from-stone-500 to-neutral-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      {t('experience_description3.1')}
+                    </li>
+                    <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                      <span className="w-2 h-2 bg-gradient-to-r from-stone-500 to-neutral-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      {t('experience_description3.2')}
+                    </li>
+                    <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                      <span className="w-2 h-2 bg-gradient-to-r from-stone-500 to-neutral-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      {t('experience_description3.3')}
+                    </li>
+                    <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                      <span className="w-2 h-2 bg-gradient-to-r from-stone-500 to-neutral-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      {t('experience_description3.4')}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              {/* Versión desktop (GlassSurface) */}
+              <div className="hidden md:block h-full">
+                <GlassSurface
+                  width="auto"
+                  height="100%"
+                  borderRadius={17}
+                  brightness={50}
+                  blur={10}
+                  opacity={0.93}
+                  redOffset={0}
+                  greenOffset={10}
+                  blueOffset={20}
+                  displace={0.5}
+                  distortionScale={-25}
+                  mixBlendMode="screen"
+                  className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
+                >
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-xl font-bold text-white">{t('experience_grade')}</h4>
+                      <p className="text-neutral-400 font-semibold">{t('experience_institution')}</p>
+                      <div className="flex flex-wrap gap-4 mt-2 text-white/60 text-sm">
+                        <div className="flex items-center">
+                          <img src="https://img.icons8.com/liquid-glass/16/calendar.png" alt="Calendar" className="w-4 h-4 mr-1" />
+                          {t('experience_period3')}
+                        </div>
+                        <div className="flex items-center">
+                          <img src="https://img.icons8.com/liquid-glass/16/worldwide-location.png" alt="MapPin" className="w-4 h-4 mr-1" />
+                          {t('experience_location')}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <ul className="space-y-2">
                       <li className="text-white/80 text-sm leading-relaxed flex items-start">
                         <span className="w-2 h-2 bg-gradient-to-r from-stone-500 to-neutral-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
                         {t('experience_description3.1')}
@@ -224,9 +346,10 @@ const Experience = () => {
                         <span className="w-2 h-2 bg-gradient-to-r from-stone-500 to-neutral-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
                         {t('experience_description3.4')}
                       </li>
-                  </ul>
-                </div>
-              </GlassSurface>
+                    </ul>
+                  </div>
+                </GlassSurface>
+              </div>
             </motion.div>
           </motion.div>
         </div>

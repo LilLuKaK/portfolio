@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useI18n } from '../../context/i18nContext';
-import GlassSurface from './../GlassSurface'
+import GlassSurface from './../GlassSurface';
 import { skills } from '../../data/mockData';
 
 const Skills = () => {
@@ -10,37 +10,37 @@ const Skills = () => {
       title: 'Frontend',
       skills: skills.frontend,
       color: 'from-blue-400 to-purple-600',
-      icon: 'https://img.icons8.com/liquid-glass/48/web-design.png' // Paleta de colores
+      icon: 'https://img.icons8.com/liquid-glass/48/web-design.png'
     },
     {
       title: 'Backend',
       skills: skills.backend,
       color: 'from-green-400 to-blue-600',
-      icon: 'https://img.icons8.com/liquid-glass/48/program.png' // Engranaje
+      icon: 'https://img.icons8.com/liquid-glass/48/program.png'
     },
     {
       title: t('skills_bbdd'),
       skills: skills.databases,
       color: 'from-yellow-400 to-orange-600',
-      icon: 'https://img.icons8.com/liquid-glass/48/cloud-database.png' // Base de datos
+      icon: 'https://img.icons8.com/liquid-glass/48/cloud-database.png'
     },
     {
       title: t('skills_methodologies'),
       skills: skills.methodologies,
       color: 'from-pink-400 to-red-600',
-      icon: 'https://img.icons8.com/liquid-glass/48/test.png' // Lista de tareas
+      icon: 'https://img.icons8.com/liquid-glass/48/test.png'
     },
     {
       title: t('skills_os'),
       skills: skills.os,
       color: 'from-indigo-400 to-purple-600',
-      icon: 'https://img.icons8.com/liquid-glass/48/happy-mac.png' // Monitor
+      icon: 'https://img.icons8.com/liquid-glass/48/happy-mac.png'
     },
     {
       title: t('skills_tools'),
       skills: skills.tools,
       color: 'from-teal-400 to-cyan-600',
-      icon: 'https://img.icons8.com/liquid-glass/48/full-tool-storage-box-.png' // Herramientas
+      icon: 'https://img.icons8.com/liquid-glass/48/full-tool-storage-box-.png'
     }
   ];
 
@@ -69,23 +69,9 @@ const Skills = () => {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <GlassSurface
-                width="auto"
-                height="100%"
-                borderRadius={17}
-                brightness={50}
-                blur={10}
-                opacity={0.93}
-                redOffset={0}
-                greenOffset={10}
-                blueOffset={20}
-                displace={0.5}
-                distortionScale={-10}
-                mixBlendMode="screen"
-                className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
-              >
+              {/* Versión móvil (glass simple) */}
+              <div className="md:hidden glass-effect-mobile h-full p-6">
                 <div className="flex flex-col w-full h-full justify-start">  
-                  {/* Sección superior (icono + título + línea) */}
                   <div className="text-center mb-6 w-full">  
                     <div className="flex justify-center mb-3">
                       <img 
@@ -98,7 +84,6 @@ const Skills = () => {
                     <div className={`w-16 h-1 bg-gradient-to-r ${category.color} mx-auto rounded-full`}></div>
                   </div>
 
-                  {/* Sección inferior (lista de habilidades) */}
                   <div className="space-y-3 w-full">
                     {category.skills.map((skill, skillIndex) => (
                       <motion.div
@@ -115,7 +100,56 @@ const Skills = () => {
                     ))}
                   </div>
                 </div>
-              </GlassSurface>
+              </div>
+              
+              {/* Versión desktop (GlassSurface) */}
+              <div className="hidden md:block h-full">
+                <GlassSurface
+                  width="auto"
+                  height="100%"
+                  borderRadius={17}
+                  brightness={50}
+                  blur={10}
+                  opacity={0.93}
+                  redOffset={0}
+                  greenOffset={10}
+                  blueOffset={20}
+                  displace={0.5}
+                  distortionScale={-25}
+                  mixBlendMode="screen"
+                  className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
+                >
+                  <div className="flex flex-col w-full h-full justify-start">  
+                    <div className="text-center mb-6 w-full">  
+                      <div className="flex justify-center mb-3">
+                        <img 
+                          src={category.icon} 
+                          alt={category.title} 
+                          className="h-12 w-12 object-contain" 
+                        />
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-2">{category.title}</h3>
+                      <div className={`w-16 h-1 bg-gradient-to-r ${category.color} mx-auto rounded-full`}></div>
+                    </div>
+
+                    <div className="space-y-3 w-full">
+                      {category.skills.map((skill, skillIndex) => (
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, delay: (index * 0.1) + (skillIndex * 0.05) }}
+                          viewport={{ once: true }}
+                          className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all duration-300"
+                        >
+                          <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`}></div>
+                          <span className="text-white/90 text-sm">{skill}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </GlassSurface>
+              </div>
             </motion.div>
           ))}
         </div>
