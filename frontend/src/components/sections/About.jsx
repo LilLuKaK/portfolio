@@ -47,8 +47,9 @@ const About = () => {
                 greenOffset={10}
                 blueOffset={20}
                 displace={0.5}
-                distortionScale={-50}
+                distortionScale={-25}
                 mixBlendMode="screen"
+                performanceMode="low"
                 className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
               >
                 <div className="space-y-6">
@@ -103,8 +104,9 @@ const About = () => {
                 greenOffset={10}
                 blueOffset={20}
                 displace={0.5}
-                distortionScale={-50}
+                distortionScale={-25}
                 mixBlendMode="screen"
+                performanceMode="low"
                 className="p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
               >
                 <div className="flex flex-col w-full">
@@ -157,8 +159,9 @@ const About = () => {
                 greenOffset={10}
                 blueOffset={20}
                 displace={0.5}
-                distortionScale={-50}
+                distortionScale={-25}
                 mixBlendMode="screen"
+                performanceMode="low"
                 className="p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
               >
                 <div className="flex flex-col w-full">

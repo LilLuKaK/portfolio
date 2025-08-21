@@ -55,14 +55,15 @@ const Hero = () => {
             <button onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}>
               <GlassSurface
                 borderRadius={50}
-                displace={0.5}
-                distortionScale={-180}
+                displace={0.3}
+                distortionScale={-120}
                 redOffset={0}
                 greenOffset={10}
                 blueOffset={20}
                 brightness={50}
                 opacity={0.93}
                 mixBlendMode="screen"
+                performanceMode="auto"
               >
                 <span className="px-8 py-4 text-white">{t('hero_view_work')}</span>
               </GlassSurface>
@@ -75,14 +76,15 @@ const Hero = () => {
             >
               <GlassSurface
                 borderRadius={50}
-                displace={0.5}
-                distortionScale={-180}
+                displace={0.3}
+                distortionScale={-120}
                 redOffset={0}
                 greenOffset={10}
                 blueOffset={20}
                 brightness={50}
                 opacity={0.93}
                 mixBlendMode="screen"
+                performanceMode="auto"
               >
                 <span className="px-8 py-4 text-white">{t('hero_download_cv')}</span>
               </GlassSurface>

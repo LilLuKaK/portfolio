@@ -51,9 +51,9 @@ const FloatingGifDialog = () => {
     },
     {
       text: t('rotom_projects_empty'),
-      sprite: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Normal.png',
+      sprite: 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Inspired.png',
       options: [
-        { label: t('rotom_option.why_no_projects'), next: 7 },
+        // { label: t('rotom_option.why_no_projects'), next: 7 },
         { label: t('rotom_option.exit'), next: 0, action: 'close' }
       ]
     },

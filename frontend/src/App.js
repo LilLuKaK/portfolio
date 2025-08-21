@@ -143,15 +143,15 @@ const Portfolio = () => {
       artist: 'Lil Tecca',
       albumArt: 'https://ia800707.us.archive.org/3/items/lil-tecca-dopamine/artworks-35OOXOGA9SjkcKZr-7l4KRw-t500x500.jpg?cnt=0',
       audioUrl: 'https://dn721905.ca.archive.org/0/items/lil-tecca-dopamine/01%20Dark%20Thoughts.mp3',
-      startHour: 15, // 00:00 UTC+2
+      startHour: 16, // 00:00 UTC+2
       color: '#272727'
     },
     {
       title: 'Belive What I Say',
       artist: 'Kanye West',
-      albumArt: 'https://ia800500.us.archive.org/26/items/1-05-keep-my-spirit-alive/DONDA_.png',
-      audioUrl: 'https://ia801300.us.archive.org/15/items/17-jesus-lord_202401/10%20Believe%20What%20I%20Say.mp3',
-      startHour: 16, // 00:00 UTC+2
+      albumArt: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2Fjvst2ity53d51.jpg&f=1&nofb=1&ipt=a0f16697e2de2d5dc47966901403d26260a642f55a63897ab49eac6b7944d23a',
+      audioUrl: 'https://dn721206.ca.archive.org/0/items/unnamed_202505/Believe_What_I_Say_V6.mp3',
+      startHour: 15, // 00:00 UTC+2
       color: '#ea1609'
     },
     {

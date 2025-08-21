@@ -117,6 +117,7 @@ const Skills = () => {
                   displace={0.5}
                   distortionScale={-25}
                   mixBlendMode="screen"
+                  performanceMode="low"
                   className="h-full p-6 transition-transform duration-500 group animate-shrink-on-leave hover:animate-pulse-scale"
                 >
                   <div className="flex flex-col w-full h-full justify-start">  

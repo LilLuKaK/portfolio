@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { forwardRef, useRef, useMemo, useLayoutEffect } from "react";
+import { forwardRef, useRef, useMemo, useLayoutEffect, useEffect } from "react";
 import { Color } from "three";
 
 const hexToNormalizedRGB = (hex) => {
@@ -69,41 +69,58 @@ void main() {
 }
 `;
 
-const SilkPlane = forwardRef(function SilkPlane({ uniforms }, ref) {
+/** Plano que actualiza el shader y suaviza la velocidad hacia el objetivo */
+const SilkPlane = forwardRef(function SilkPlane(
+  { uniforms, targetSpeedRef, reactsToAudio, baseSpeed },
+  ref
+) {
   const { viewport } = useThree();
-  
+
   useLayoutEffect(() => {
     if (ref.current) {
       ref.current.scale.set(viewport.width, viewport.height, 1);
     }
   }, [ref, viewport]);
-  
+
   useFrame((_, delta) => {
-    ref.current.material.uniforms.uTime.value += 0.1 * delta;
+    // Tiempo del shader
+    uniforms.uTime.value += 0.1 * delta;
+
+    // Velocidad: suavizado hacia el objetivo
+    const current = uniforms.uSpeed.value;
+    const target = reactsToAudio ? targetSpeedRef.current : baseSpeed;
+    const lerpFactor = Math.min(1, delta * 3); // suavizado agradable
+    uniforms.uSpeed.value = current + (target - current) * lerpFactor;
   });
-  
+
   return (
     <mesh ref={ref}>
-    <planeGeometry args={[1, 1, 1, 1]} />
-    <shaderMaterial
-    uniforms={uniforms}
-    vertexShader={vertexShader}
-    fragmentShader={fragmentShader}
-    />
+      <planeGeometry args={[1, 1, 1, 1]} />
+      <shaderMaterial
+        uniforms={uniforms}
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+      />
     </mesh>
   );
 });
 SilkPlane.displayName = "SilkPlane";
 
 const Silk = ({
+  // velocidad base (si no hay audio o se desactiva la reacción)
   speed = 5,
+  // rango cuando reacciona al audio (min/max)
+  speedMin = 2,
+  speedMax = 12,
+  reactsToAudio = true,
   scale = 1,
   color = "#7B7481",
   noiseIntensity = 1.5,
   rotation = 0,
 }) => {
   const meshRef = useRef();
-  
+  const targetSpeedRef = useRef(speed); // valor objetivo dinámico
+
   const uniforms = useMemo(
     () => ({
       uSpeed: { value: speed },
@@ -115,10 +132,30 @@ const Silk = ({
     }),
     [speed, scale, noiseIntensity, color, rotation]
   );
-  
+
+  // Escucha el evento 'audio-energy' emitido por el reproductor
+  useEffect(() => {
+    if (!reactsToAudio) return;
+
+    const onEnergy = (e) => {
+      const energy = Math.max(0, Math.min(1, e.detail?.energy ?? 0));
+      // Mapear energía [0..1] a velocidad [speedMin..speedMax]
+      targetSpeedRef.current = speedMin + energy * (speedMax - speedMin);
+    };
+
+    window.addEventListener("audio-energy", onEnergy);
+    return () => window.removeEventListener("audio-energy", onEnergy);
+  }, [reactsToAudio, speedMin, speedMax]);
+
   return (
     <Canvas dpr={[1, 2]} frameloop="always">
-    <SilkPlane ref={meshRef} uniforms={uniforms} />
+      <SilkPlane
+        ref={meshRef}
+        uniforms={uniforms}
+        targetSpeedRef={targetSpeedRef}
+        reactsToAudio={reactsToAudio}
+        baseSpeed={speed}
+      />
     </Canvas>
   );
 };

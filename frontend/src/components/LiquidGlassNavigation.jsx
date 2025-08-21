@@ -65,10 +65,10 @@ const LiquidGlassNavigation = () => {
         redOffset={0}
         greenOffset={10}
         blueOffset={20}
-        displace={0.5}
-        distortionScale={-180}
+        displace={0.25}
+        distortionScale={-80}
         mixBlendMode="screen"
-        className="glass-nav-container"
+        performanceMode="auto"
       >
         <div className="dock-container">
           {navigationItems.map((item) => (

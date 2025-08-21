@@ -68,69 +68,37 @@ export const education = [
 ];
 
 export const projects = [
-  /*{
-    id: 1,
-    title: "Can't look at this LOL",
-    description: "Can't look at this LOL but longer.",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "REST API"],
-    category: "Web Application",
-    image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
+  {
+    id: 'id1',
+    titleKey: 'projects_id1_title',
+    descriptionKey: 'projects_id1_description',
+    image: 'https://i.imgur.com/w4tPr5E_d.webp?maxwidth=760&fidelity=grand',
+    categoryKey: 'web',
+    technologies: ['React', 'Yarn', 'Tailwind', 'TypeScript', 'JavaScript'],
     featured: true,
     links: {
-      live: "#",
-      github: "#"
+      live: 'https://lukaserver.com',
     }
   },
   {
-    id: 2,
-    title: "Can't look at this LOL",
-    description: "Can't look at this LOL but longer.",
-    technologies: ["React", "TypeScript", "Chart.js", "REST API"],
-    category: "Dashboard",
-    image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
+    id: 'id2',
+    titleKey: 'projects_id2_title',
+    descriptionKey: 'projects_id2_description',
+    image: 'https://i.imgur.com/1ijNkCi.png',
+    categoryKey: 'web',
+    technologies: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'MySQL'],
+    featured: false,
+    links: {
+      live: 'https://laika.lukaserver.com',
+    }
+  },
+  {
+    id: 'id3',
+    titleKey: 'projects_id3_title',
+    descriptionKey: 'projects_id3_description',
+    image: 'https://i.imgur.com/ainQEz9.png',
+    categoryKey: '',
+    technologies: ['Arch Linux', 'MySQL', 'xrdp', 'GNOME', 'Wayland', 'hyprland'],
     featured: true,
-    links: {
-      live: "#",
-      github: "#"
-    }
   },
-  {
-    id: 3,
-    title: "Can't look at this LOL",
-    description: "Can't look at this LOL but longer.",
-    technologies: ["Vue.js", "Node.js", "MongoDB", "Stripe"],
-    category: "Web Application",
-    image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
-    featured: false,
-    links: {
-      live: "#",
-      github: "#"
-    }
-  },
-  {
-    id: 4,
-    title: "Can't look at this LOL",
-    description: "Can't look at this LOL but longer.",
-    technologies: ["React", "Socket.io", "Node.js", "PostgreSQL"],
-    category: "Web Application",
-    image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
-    featured: false,
-    links: {
-      live: "#",
-      github: "#"
-    }
-  },
-  {
-    id: 5,
-    title: "Can't look at this LOL",
-    description: "Can't look at this LOL but longer.",
-    technologies: ["Angular", "TypeScript", "Java", "MySQL"],
-    category: "Web Application",
-    image: "https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudHxlbnwwfHx8fDE3NTI3NDcyNjh8MA&ixlib=rb-4.1.0&q=85",
-    featured: false,
-    links: {
-      live: "#",
-      github: "#"
-    }
-  }*/
 ];
