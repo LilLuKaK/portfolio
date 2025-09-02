@@ -260,7 +260,7 @@ const Contact = () => {
             className="space-y-8"
           >
             {/* Contact Connect - Mobile */}
-            <div className="md:hidden glass-effect-mobile p-6 !mt-0">
+            <div className="glass-effect-mobile p-6 !mt-0">
               <div className="flex flex-col w-full p-6">
                 <h3 className="text-2xl font-bold text-white mb-6 w-full">
                   {t('contact_connect')}
@@ -288,8 +288,8 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Contact Connect - Desktop */}
-            <div className="hidden md:block h-[40%] !mt-0">
+            {/* Contact Connect - Desktop
+            <div className="hidden lg:block lg:hidden h-[40%] !mt-0">
               <GlassSurface
                 width="auto"
                 height="100%"
@@ -333,9 +333,10 @@ const Contact = () => {
                 </div>
               </GlassSurface>
             </div>
+            */}
 
             {/* Download Resume - Mobile */}
-            <div className="md:hidden glass-effect-mobile p-6">
+            <div className="glass-effect-mobile p-6">
               <div className="flex flex-col w-full p-6">
                 <h3 className="text-xl font-bold text-white mb-6">{t('contact_download')}</h3>
                 <a
@@ -349,8 +350,8 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Download Resume - Desktop */}
-            <div className="hidden md:block h-[calc(30%-32px)]">
+            {/* Download Resume - Desktop
+            <div className="hidden lg:block lg:hidden h-[calc(30%-32px)]">
               <GlassSurface
                 width="auto"
                 height="100%"
@@ -380,9 +381,10 @@ const Contact = () => {
                 </div>
               </GlassSurface>
             </div>
+            */}
 
             {/* Social Media - Mobile */}
-            <div className="md:hidden glass-effect-mobile p-6">
+            <div className="glass-effect-mobile p-6">
               <div className="flex flex-col w-full p-6">
                 <h3 className="text-xl font-bold text-white mb-6">{t('contact_social')}</h3>
                 <div className="flex space-x-4">
@@ -411,8 +413,8 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Social Media - Desktop */}
-            <div className="hidden md:block h-[calc(30%-32px)]">
+            {/* Social Media - Desktop
+            <div className="hidden lg:block lg:hidden h-[calc(30%-32px)]">
               <GlassSurface
                 width="auto"
                 height="100%"
@@ -457,6 +459,7 @@ const Contact = () => {
                 </div>
               </GlassSurface>
             </div>
+            */}
           </motion.div>
 
           {/* COLUMNA DERECHA: Cabecera fija + carrusel inferior */}
@@ -467,14 +470,14 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             {/* Móvil */}
-            <div className="md:hidden glass-effect-mobile p-6">
+            <div className="lg:hidden glass-effect-mobile p-6">
               <div className="flex flex-col w-full p-6">
                 <StatusAndForm t={t} rotomStatus={rotomStatus} />
               </div>
             </div>
 
             {/* Desktop */}
-            <div className="hidden md:block h-full">
+            <div className="hidden lg:block h-full">
               <GlassSurface
                 width="auto"
                 height="100%"

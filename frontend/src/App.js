@@ -187,20 +187,20 @@ const Portfolio = () => {
       color: '#7c4c2d'
     },
     {
-      title: 'Once Apon A Time',
-      artist: 'Toby Fox',
-      albumArt: 'https://ia801504.us.archive.org/6/items/undertaleost_202004/Undertale%20-%20Lossless%20Soundtrack%20%28toby%20fox%29/toby%20fox%20-%20UNDERTALE%20Soundtrack%20-%20cover.png',
-      audioUrl: 'https://ia601504.us.archive.org/6/items/undertaleost_202004/Undertale%20-%20Lossless%20Soundtrack%20%28toby%20fox%29/toby%20fox%20-%20UNDERTALE%20Soundtrack%20-%2001%20Once%20Upon%20a%20Time.mp3',
+      title: 'No More Partes in LA',
+      artist: 'Kanye West, Kendrick Lamar',
+      albumArt: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgonzomusic.fr%2Ffiles%2FTHE-LIFE-OF-PABLO-COVER.png&f=1&nofb=1&ipt=0247db0031d5e9582039d2ffbcf945b7bbc2af2c6fb4dca017353aaac3207b7c',
+      audioUrl: 'https://ia600206.us.archive.org/23/items/soundloader.app-no-more-parties-in-la-mocking-bird-011/soundloader.app%20-%20No%20More%20Parties%20in%20LA%20-%20MockingBird011.mp3',
       startHour: 21, // 00:00 UTC+2
-      color: '#1c2058'
+      color: '#F58B57'
     },
     {
-      title: 'Fallen Down',
-      artist: 'Toby Fox',
-      albumArt: 'https://ia801504.us.archive.org/6/items/undertaleost_202004/Undertale%20-%20Lossless%20Soundtrack%20%28toby%20fox%29/toby%20fox%20-%20UNDERTALE%20Soundtrack%20-%20cover.png',
-      audioUrl: 'https://dn721605.ca.archive.org/0/items/undertaleost_202004/Undertale%20-%20Lossless%20Soundtrack%20%28toby%20fox%29/toby%20fox%20-%20UNDERTALE%20Soundtrack%20-%2004%20Fallen%20Down.mp3',
+      title: 'MAFIA',
+      artist: 'Travis Scott',
+      albumArt: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fis3-ssl.mzstatic.com%2Fimage%2Fthumb%2FMusic126%2Fv4%2Fd8%2Ffe%2F12%2Fd8fe12d9-e6a5-dbcb-814f-f43b516dddea%2F886449721696.jpg%2F1200x1200bf-60.jpg&f=1&nofb=1&ipt=6a8fef83dbe404d89e32e924cc26add9313b289a35acd0899081dcf0eccaaf3f',
+      audioUrl: 'https://ia600908.us.archive.org/15/items/soundloader.app-mafia-travis-scott-1/soundloader.app%20-%20MAFIA%20-%20Travis%20Scott%281%29.mp3',
       startHour: 22, // 00:00 UTC+2
-      color: '#1c2058'
+      color: '#cac7bf'
     },
     {
       title: 'Ruins',

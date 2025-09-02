@@ -20,7 +20,7 @@ const About = () => {
             className="h-full"
           >
             {/* Versión móvil (efecto glass simple) */}
-            <div className="md:hidden glass-effect-mobile h-full p-6">
+            <div className="lg:hidden glass-effect-mobile h-full p-6">
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold text-white mb-4">
                   {t('about_profile')}
@@ -35,7 +35,7 @@ const About = () => {
             </div>
             
             {/* Versión desktop (GlassSurface - oculto en móviles) */}
-            <div className="hidden md:block h-full">
+            <div className="hidden lg:block h-full">
               <GlassSurface
                 width="auto"
                 height="100%"
@@ -75,7 +75,7 @@ const About = () => {
             className="flex flex-col h-full gap-6"
           >
             {/* Versión móvil - Languages */}
-            <div className="md:hidden glass-effect-mobile p-6 h-[calc(40%-12px)]">
+            <div className="glass-effect-mobile p-6 h-[calc(40%-12px)]">
               <div className="flex flex-col w-full">
                 <h3 className="text-xl font-bold text-white mb-4 w-full">{t('about_languages')}</h3>
                 <div className="space-y-3 w-full">
@@ -91,8 +91,8 @@ const About = () => {
               </div>
             </div>
             
-            {/* Versión desktop - Languages (oculto en móviles) */}
-            <div className="hidden md:block">
+            {/* Versión desktop - Languages (oculto en móviles)
+            <div className="hidden lg:block lg:hidden ">
               <GlassSurface
                 width="auto"
                 height="100%"
@@ -124,9 +124,10 @@ const About = () => {
                 </div>
               </GlassSurface>
             </div>
+            */}
 
             {/* Versión móvil - Additional Info */}
-            <div className="md:hidden glass-effect-mobile p-6 h-[calc(60%-12px)]">
+            <div className="glass-effect-mobile p-6 h-[calc(60%-12px)]">
               <div className="flex flex-col w-full">
                 <h3 className="text-xl font-bold text-white mb-4 w-full">{t('about_additional_info')}</h3>
                 <div className="space-y-3 w-full">
@@ -146,8 +147,8 @@ const About = () => {
               </div>
             </div>
             
-            {/* Versión desktop - Additional Info (oculto en móviles) */}
-            <div className="hidden md:block">
+            {/* Versión desktop - Additional Info (oculto en móviles)
+            <div className="hidden lg:block lg:hidden ">
               <GlassSurface
                 width="auto"
                 height="100%"
@@ -183,6 +184,7 @@ const About = () => {
                 </div>
               </GlassSurface>
             </div>
+            */}
           </motion.div>
         </div>
       </div>

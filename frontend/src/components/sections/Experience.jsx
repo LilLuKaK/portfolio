@@ -42,7 +42,7 @@ const Experience = () => {
               viewport={{ once: true }}
             >
               {/* Versión móvil (glass simple) */}
-              <div className="md:hidden glass-effect-mobile h-full p-6">
+              <div className="lg:hidden glass-effect-mobile h-full p-6">
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-xl font-bold text-white">{t('experience_position1')}</h4>
@@ -81,7 +81,7 @@ const Experience = () => {
               </div>
               
               {/* Versión desktop (GlassSurface) */}
-              <div className="hidden md:block h-full">
+              <div className="hidden lg:block h-full">
                 <GlassSurface
                   width="auto"
                   height="100%"
@@ -144,7 +144,7 @@ const Experience = () => {
               viewport={{ once: true }}
             >
               {/* Versión móvil (glass simple) */}
-              <div className="md:hidden glass-effect-mobile h-full p-6">
+              <div className="glass-effect-mobile h-full p-6">
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-xl font-bold text-white">{t('experience_position1')}</h4>
@@ -182,8 +182,8 @@ const Experience = () => {
                 </div>
               </div>
               
-              {/* Versión desktop (GlassSurface) */}
-              <div className="hidden md:block h-full">
+              {/* Versión desktop (GlassSurface)
+              <div className="hidden lg:block lg:hidden h-full">
                 <GlassSurface
                   width="auto"
                   height="100%"
@@ -237,6 +237,7 @@ const Experience = () => {
                   </div>
                 </GlassSurface>
               </div>
+              */}
             </motion.div>
           </motion.div>
 
@@ -260,7 +261,7 @@ const Experience = () => {
               viewport={{ once: true }}
             >
               {/* Versión móvil (glass simple) */}
-              <div className="md:hidden glass-effect-mobile h-full p-6">
+              <div className="glass-effect-mobile h-full p-6">
                 <div className="space-y-4">
                   <div>
                     <h4 className="text-xl font-bold text-white">{t('experience_grade')}</h4>
@@ -298,8 +299,8 @@ const Experience = () => {
                 </div>
               </div>
               
-              {/* Versión desktop (GlassSurface) */}
-              <div className="hidden md:block h-full">
+              {/* Versión desktop (GlassSurface)
+              <div className="hidden lg:block lg:hidden h-full">
                 <GlassSurface
                   width="auto"
                   height="100%"
@@ -353,6 +354,7 @@ const Experience = () => {
                   </div>
                 </GlassSurface>
               </div>
+              */}
             </motion.div>
           </motion.div>
         </div>

@@ -70,7 +70,7 @@ const Skills = () => {
               viewport={{ once: true }}
             >
               {/* Versión móvil (glass simple) */}
-              <div className="md:hidden glass-effect-mobile h-full p-6">
+              <div className="glass-effect-mobile h-full p-6">
                 <div className="flex flex-col w-full h-full justify-start">  
                   <div className="text-center mb-6 w-full">  
                     <div className="flex justify-center mb-3">
@@ -102,8 +102,8 @@ const Skills = () => {
                 </div>
               </div>
               
-              {/* Versión desktop (GlassSurface) */}
-              <div className="hidden md:block h-full">
+              {/* Versión desktop (GlassSurface)
+              <div className="hidden lg:block lg:hidden h-full">
                 <GlassSurface
                   width="auto"
                   height="100%"
@@ -151,6 +151,7 @@ const Skills = () => {
                   </div>
                 </GlassSurface>
               </div>
+              */}
             </motion.div>
           ))}
         </div>
