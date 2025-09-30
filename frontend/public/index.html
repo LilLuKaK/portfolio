@@ -8,6 +8,15 @@
 
     <!-- Ejecuta el chequeo ANTES de cargar la app -->
     <script type="module" src="/src/utils/networkFallback.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ETSB60PD4P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Opcional pero recomendado: cookie para todos los subdominios
+      gtag('config', 'G-ETSB60PD4P', { cookie_domain: 'lukaserver.com' });
+    </script>
   </head>
   <body>
     <div id="root"></div>
