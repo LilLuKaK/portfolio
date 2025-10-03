@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react"
 import { useEffect, useState } from "react";
 import { I18nProvider } from './context/i18nContext';
 import "./App.css";
