@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/react"
 import { useEffect, useState } from "react";
 import { I18nProvider } from './context/i18nContext';
 import "./App.css";
@@ -14,6 +13,7 @@ import LiquidGlassNavigation from "./components/LiquidGlassNavigation";
 import DynamicIslandMusicPlayer from './components/DynamicIslandMusicPlayer';
 import FloatingGifDialog from "./components/FloatingGifDialog";
 import Silk from "./components/Silk";
+import SplashIntro from "./components/SplashIntro";
 
 const Portfolio = () => {
 
@@ -262,35 +262,44 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black overflow-x-hidden relative">
-      {/* Fondo Silk global */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <Silk
-          speed={5}
-          scale={1.3}
-          color={silkColor}
-          noiseIntensity={1.5}
-          rotation={0}
-        />
-      </div>
+    <>
+      <SplashIntro
+        logoSrc="https://i.imgur.com/7boR72B.png"
+        bg={silkColor}     // si lo quieres blanco usa "#ffffff" (ojo: "#fffff" NO es válido)
+        showDelay={500}   // aparece logo a los 0,5 s
+        hideDelay={2000}  // desaparece todo a los 1,5 s
+        // fadeDuration={600} // opcional
+      />
+      <div className="min-h-screen bg-black overflow-x-hidden relative">
+        {/* Fondo Silk global */}
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <Silk
+            speed={5}
+            scale={1.3}
+            color={silkColor}
+            noiseIntensity={1.5}
+            rotation={0}
+          />
+        </div>
 
-      {/* Contenido principal con z-index mayor */}
-      <div className="relative z-10">
-        <LiquidGlassNavigation />
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
+        {/* Contenido principal con z-index mayor */}
+        <div className="relative z-10">
+          <LiquidGlassNavigation />
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Contact />
+        </div>
+        {/* Footer sin fondo Silk */}
+        <div className="relative z-10">
+          <Footer />
+        </div>
+        <DynamicIslandMusicPlayer songs={songs} onColorChange={setSilkColor} />
+        <FloatingGifDialog />
       </div>
-      {/* Footer sin fondo Silk */}
-      <div className="relative z-10">
-        <Footer />
-      </div>
-      <DynamicIslandMusicPlayer songs={songs} onColorChange={setSilkColor} />
-      <FloatingGifDialog />
-    </div>
+    </>
   );
 };
 
