@@ -76,6 +76,10 @@ const Experience = () => {
                       <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
                       {t('experience_description1.4')}
                     </li>
+                    <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                      <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                      {t('experience_description1.5')}
+                    </li>
                   </ul>
                 </div>
               </div>
