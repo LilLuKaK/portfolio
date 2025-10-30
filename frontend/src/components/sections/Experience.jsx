@@ -91,7 +91,7 @@ const Experience = () => {
                   height="100%"
                   borderRadius={17}
                   brightness={50}
-                  blur={10}
+                  blur={30}
                   opacity={0.93}
                   redOffset={0}
                   greenOffset={10}
@@ -134,6 +134,10 @@ const Experience = () => {
                       <li className="text-white/80 text-sm leading-relaxed flex items-start">
                         <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
                         {t('experience_description1.4')}
+                      </li>
+                      <li className="text-white/80 text-sm leading-relaxed flex items-start">
+                        <span className="w-2 h-2 bg-gradient-to-r from-stone-600 to-neutral-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        {t('experience_description1.5')}
                       </li>
                     </ul>
                   </div>
